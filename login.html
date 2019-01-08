@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+
+  <title>ระบบการจัดการกิจเก็บชั่วโมงจิตอาสากองทุนกู้ยืมเพื่อการศึกษา</title>
+
+  <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/modules/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="assets/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+
+  <link rel="stylesheet" href="assets/css/demo.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg- offset-lg-3 col-xl-4 offset-xl-4">
+            <div class="login-brand">
+                ระบบการจัดการกิจเก็บชั่วโมงจิตอาสา
+             
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-header"><h4 align="center"> เข้าสู่ระบบ</h4></div>
+
+              <div class="card-body">
+                <form method="POST" action="clogin.php" class="needs-validation" novalidate="">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="username" type="email" class="form-control" name="username" tabindex="1" required autofocus>
+                    <div class="invalid-feedback">
+                      Please fill in your email
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password" class="d-block">Password
+                     
+                    </label>
+                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                    <div class="invalid-feedback">
+                      please fill in your password
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit"  id="submit"  name="submit" class="btn btn-primary btn-block" tabindex="4">
+                      เข้าสู่ระบบ
+                    </button>
+                    <a  name="submit" class="btn btn-danger btn-block" tabindex="4" href="index.php">
+                      กลับสู่หน้าแรก
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="mt-5 text-muted text-center">
+             ยังไม่มีบัญชี ? <a href="register.php">สมัครสมาชิก</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="assets/modules/jquery.min.js"></script>
+  <script src="assets/modules/popper.js"></script>
+  <script src="assets/modules/tooltip.js"></script>
+  <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="assets/modules/moment.min.js"></script>
+  <script src="assets/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
+  <script src="assets/js/sa-functions.js"></script>
+  
+  <script src="assets/js/scripts.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/demo.js"></script>
+</body>
+</html>

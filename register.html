@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Prompt" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+  <title>Examples &rsaquo; Register &mdash; Stisla</title>
+
+  <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/modules/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="assets/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+
+  <link rel="stylesheet" href="assets/css/demo.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.css">
+  <style>
+  span{
+    color: red;
+
+  }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+            <div class="login-brand">สมัครสมาชิก</div>
+
+            <div class="card card-primary">
+              <div class="card-header">กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน</div>
+
+              <div class="card-body">
+                <form method="POST" name="form_search" id="form_search" action="insert.php" onsubmit="return check()">
+                  <div class="row">
+                      <div class="form-group col-2">
+                          <label for="email">คำนำหน้า<span>*</span></label>
+                          <!-- <input id="pre_name" type="text" class="form-control" name="pre_name"> -->
+                          <select class="form-control" id="pre_name" name="pre_name">
+                              <option value="นาย">นาย</option>
+                              <option value="นางสาว">นางสาว</option>
+                              <option value="นาง">นาง</option>
+                            </select>
+                          <div class="invalid-feedback">
+                          </div>
+                      </div>
+                      <div class="form-group col-5">
+                        <label for="email">ชื่อ<span>*</span></label>
+                        <input id="user_name" type="text" class="form-control" name="user_name" autofocus>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                      <label for="email">นามสกุล<span>*</span></label>
+                      <input id="user_lastname" type="text" class="form-control" name="user_lastname" autofocus>
+                      <div class="invalid-feedback" >
+                      </div>
+                  </div>
+
+                    <div class="form-group col-6">
+                      <label for="frist_name">รหัสนักศึกษา<span>*</span></label>
+                      <input id="user_id" type="number" class="form-control" name="user_id" autofocus>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label>สาขาวิชา<span>*</span></label>
+                        <select class="form-control" id="user_majer" name="user_majer">
+                          <option value="0">กรุณาเลือก...</option>
+                          <option value="1">คณิตศาสตร์</option>
+                          <option value="2"> วิทยาการคอมพิวเตอร์</option>
+                          <option value="3">ภูมิศาสตร์และภูมิสารสนเทศ</option>
+                          <option value="4"> วิทยาศาสตร์การกีฬา</option>
+                          <option value="5">สถิติประยุกต์</option>
+                          <option value="6">เคมี</option>
+                          <option value="7">สาธารณสุขศาสตร์</option>
+                          <option value="8">วิทยาศาสตร์การอาหาร</option>
+                          <option value="9">ชีววิทยา</option>
+                          <option value="10">วิทยาศาสตร์สิ่งแวดล้อม</option>
+                          <option value="11">เทคโนโลยีสารสนเทศ</option>
+                          <option value="11">วิทยาศาสตร์สิ่งทอ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-3">
+                      <label for="last_name">ชั้นปี<span>*</span></label>
+                      <input id="user_year" type="number" class="form-control" name="user_year" >
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="last_name">หมู่<span>*</span></label>
+                        <input id="user_moo" type="number" class="form-control" name="user_moo" >
+                      </div>
+                      
+                    <div class="form-group col-6">
+                      <label for="last_name">โทร<span>*</span></label>
+                      <input id="user_tel" type="number" class="form-control" name="user_tel" >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email<span>*</span></label>
+                    <input id="user_email" type="email" class="form-control" name="user_email">
+                    <div class="invalid-feedback">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="password" class="d-block">Password<span>*</span></label>
+                      <input id="user_password" type="password" class="form-control" name="user_password">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="password2" class="d-block">Password Confirmation<span>*</span></label>
+                      <input id="password2" type="password" class="form-control" name="password2">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="card-header">โปรดตรวจสอบข้อมูลก่อนยืนยัน<span>*</span></div>
+                    <button type="submit"id="search" name="search" class="btn btn-primary btn-block">
+                      ยืนยัน
+                    </button>
+                    <a type="button"class="btn btn-primary btn-block" href="login.php">
+                      ย้อนกลับ
+                          </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="assets/modules/jquery.min.js"></script>
+  <script src="assets/modules/popper.js"></script>
+  <script src="assets/modules/tooltip.js"></script>
+  <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="assets/modules/moment.min.js"></script>
+  <script src="assets/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
+  <script src="assets/js/sa-functions.js"></script>
+  
+  <script src="assets/js/scripts.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/demo.js"></script>
+  <script>
+    function check() {
+      if (document.form_search.pre_name.value == "") {
+
+        Swal({
+            type: 'error',
+            title: 'กรุณา เลือกคำนำหน้า',
+            footer: ''
+            })
+        document.form_search.pre_name.focus();
+        return false;
+      }  else if (document.form_search.user_name.value == "") {
+
+       Swal({
+            type: 'error',
+            title: 'กรุณา กรอกชื่อ',
+            footer: ''
+            })
+        document.form_search.user_name.focus();
+        return false;
+      } else if (document.form_search.user_lastname.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอกนามสกุล',
+     footer: ''
+     })
+ document.form_search.user_lastname.focus();
+ return false;
+
+} else if (document.form_search.user_id.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอกรหัสประจำตัว',
+     footer: ''
+     })
+ document.form_search.user_id.focus();
+ return false;
+} else if (document.form_search.user_majer.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา เลือกสาขาวิชา',
+     footer: ''
+     })
+ document.form_search.user_majer.focus();
+ return false;
+} else if (document.form_search.user_year.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอกชั้นปี',
+     footer: ''
+     })
+ document.form_search.user_year.focus();
+ return false;
+} else if (document.form_search.user_moo.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอกหมู่',
+     footer: ''
+     })
+ document.form_search.user_moo.focus();
+ return false;
+} else if (document.form_search.user_tel.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอกเบอร์โทร',
+     footer: ''
+     })
+ document.form_search.user_tel.focus();
+ return false;
+} else if (document.form_search.user_email.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก Email',
+     footer: ''
+     })
+ document.form_search.user_email.focus();
+ return false;
+} else if (document.form_search.user_password.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก รหัสผ่าน',
+     footer: ''
+     })
+ document.form_search.user_password.focus();
+ return false;
+} else if (document.form_search.password-confirm.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก รหัสผ่านอีกครั้ง',
+     footer: ''
+     })
+ document.form_search.password2.focus();
+ return false;
+} else if (document.form_search.password2.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก รหัสอีกครั้ง',
+     footer: ''
+     })
+ document.form_search.password2.focus();
+ return false;
+}else if (document.form_search.password2.value != document.form_search.user_password.value) {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก รหัสผ่านไม่ตรงกัน',
+     footer: ''
+     })
+ document.form_search.user_password.focus();
+ return false;
+}
+    }
+  </script>
+</body>
+</html>
+
