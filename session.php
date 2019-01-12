@@ -4,5 +4,5 @@ if (isset( $_SESSION['id'] ) ) {
     // Let them access the "logged in only" pages
 } else {
     // Redirect them to the login page
-    header("location: /Projected/login.php");
+    header("location: /Projected/outsider.php");
 }

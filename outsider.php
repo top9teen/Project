@@ -1,8 +1,5 @@
 <?php
- ob_start();
- session_start();
-require 'session.php';
-require_once 'common.php';
+
 require_once 'lib/template.php';
 require_once 'config/database.php';
 require_once 'models/userModel.php';
@@ -17,8 +14,9 @@ $db = $database->getConnection();
 // prepare product object
 $model = new userModel($db);
 
+
 $template->set_filenames(array(
-    'body' => 'indexmember.html')
+    'body' => 'index.html')
 );
 
 
@@ -27,6 +25,7 @@ $stmt = $model->getAll();
 $num = $stmt->rowCount();
 
 if ($num > 0) {
+      $response_data = array();
       $count = 1;
       $max = 1;
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -46,15 +45,4 @@ if ($num > 0) {
       }
   }
 
-  $data = array(
-    "username" => $_SESSION["username"],
-    "type"     => $_SESSION["type"],
-    "pre_name" => $_SESSION["pre_name"],
-    "user_name" => $_SESSION["user_name"],
-    "user_lastname" => $_SESSION["user_lastname"],
-    "img" => $_SESSION["img"],
-
-);
-
-$template->assign_vars($data);
-$template->pparse('body');
+  $template->pparse('body');
