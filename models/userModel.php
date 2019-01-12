@@ -81,7 +81,19 @@ class userModel
             if($stmt->execute()){
                 return true;
             }
-    
             return false;
+    }
+
+    public function getAll()
+    {
+        $query = "SELECT * FROM tb_activities WHERE activities_status = '0' AND activities_max ='A' ORDER BY activities_hour DESC,activities_join DESC";
+
+        $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        try {
+            $stmt->execute();
+            return $stmt;
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
         }
+    }
 }
