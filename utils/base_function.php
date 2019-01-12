@@ -121,11 +121,11 @@ function reformatStatusMedical($status)
 function reformatCertificate($request_form)
 {
     if ($request_form == 1) {
-        return "<td><span><img src=\"assets/img/hot/icon-1st.svg\" style=\"height: 60%;width: 80%\"></span></td>";
+        return "<td><span><img src=\"/Projected/assets/img/hot/icon-1st.svg\" style=\"height: 60%;width: 80%\"></span></td>";
     } else if ($request_form == 2) {
-        return "<td><span><img src=\"assets/img/hot/icon-2nd.svg\" style=\"height: 60%;width: 80%\"></span></td>";
+        return "<td><span><img src=\"/Projected/assets/img/hot/icon-2nd.svg\" style=\"height: 60%;width: 80%\"></span></td>";
     } else if ($request_form == 3) {
-        return "<td><span><img src=\"assets/img/hot/icon-3rd.svg\" style=\"height: 60%;width: 80%\"></span></td>";
+        return "<td><span><img src=\"/Projected/assets/img/hot/icon-3rd.svg\" style=\"height: 60%;width: 80%\"></span></td>";
     }
 }
 

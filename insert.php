@@ -35,7 +35,7 @@ header('Content-Type: application/json');
               $_FILES['file']['size']
           );
   }else{
-    $model->img ="assets/upload/img/avatar-6.jpeq";
+    $model->img ="/Projected/assets/upload/img/avatar-6.jpeq";
   }
    $model->insert();
     
@@ -59,7 +59,7 @@ function uploadFile($file_name, $file_tmp, $file_size)
         }
 
         if (empty($errors) == true) {
-            $tmppath = "assets/upload/img/" . uniqid() . '.' . $file_ext;
+            $tmppath = "/Projected/assets/upload/img/" . uniqid() . '.' . $file_ext;
             move_uploaded_file($file_tmp, $tmppath);
             return $tmppath;
         } else {
