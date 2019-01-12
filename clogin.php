@@ -13,21 +13,35 @@ if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["passwo
     $userModel = new userModel($db);
     $userModel->username = $username;
     $userModel->password = $password;
-   
+
     $userModel->get();
+  
     if (($userModel->id > 0))
     {
         // var_dump($userModel);
-        $_SESSION["id"] = $userModel->id;
-        $_SESSION["username"] = $userModel->username;
-        $_SESSION["password"] = $userModel->password;
-        header("location: /project/index.php");
+        $_SESSION["user_lastname"]  = $userModel->user_lastname;
+        $_SESSION["user_name"]      = $userModel->user_name;
+        $_SESSION["password"]       = $userModel->user_password;
+        $_SESSION["username"]       = $userModel->user_email;
+        $_SESSION["pre_name"]       = $userModel->pre_name;
+        $_SESSION["status"]         = $userModel->status;
+        $_SESSION["img"]            = $userModel->img;
+        $_SESSION["img"]            = $userModel->img;
+        $_SESSION["id"]             = $userModel->id;
+    
+        if ($_SESSION["status"] == "1") {
+        
+            $_SESSION["type"] = "นักศึกษา";
+            header("location: /Projected/indexmember.php");
+        } else {
+           
+            $_SESSION["type"] = "ผู้ดูแลระบบ";
+            header("location: /Projected/indexadmin.php");
+        }
     }
     else
-   
     {
        echo "<script>alert('ชื่อผู้เข้าใช้หรือรหัสผ่านไม่ถูกต้อง');location.href='login.php?e=mismatch'</script>";
-   
     }
 }
 ?>

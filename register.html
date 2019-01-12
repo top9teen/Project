@@ -4,7 +4,7 @@
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Prompt" rel="stylesheet">
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
-  <title>Examples &rsaquo; Register &mdash; Stisla</title>
+  <title>ระบบการจัดการกิจเก็บชั่วโมงจิตอาสากองทุนกู้ยืมเพื่อการศึกษา</title>
 
   <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/modules/ionicons/css/ionicons.min.css">
@@ -35,7 +35,7 @@
               <div class="card-header">กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน</div>
 
               <div class="card-body">
-                <form method="POST" name="form_search" id="form_search" action="insert.php" onsubmit="return check()">
+                <form method="POST" name="form_search" id="form_search" action="insert.php"  data-parsley-validate="" novalidate="" onsubmit="return check()" enctype="multipart/form-data">
                   <div class="row">
                       <div class="form-group col-2">
                           <label for="email">คำนำหน้า<span>*</span></label>
@@ -118,6 +118,20 @@
                       <input id="password2" type="password" class="form-control" name="password2">
                     </div>
                   </div>
+                  <div class="col-lg-3 col-sm-6 form-group">
+                    <label for="sdate">รูปประจำตัว</label>
+                    <a data-toggle="tooltip" data-placement="right" data-container="body" title="ไฟล์รูปภาพที่เป็นนามสกุล JPG, PNG, GIF และมีขนาดไม่เกิน 2mb">
+                        <i class="icon mdi mdi-help"></i>
+                    </a>
+                    <div>
+                      <input id="file" type="file" name="file" data-multiple-caption="{count} files selected"
+                            class="inputfile" required="">
+                        <label for="file" class="">
+                            <i class="mdi mdi-upload"></i>
+                            <span>แนบไฟล์...</span>
+                        </label>
+                    </div>
+                </div>
 
                   <div class="form-group">
                     <div class="card-header">โปรดตรวจสอบข้อมูลก่อนยืนยัน<span>*</span></div>
@@ -151,6 +165,7 @@
   <script src="assets/js/demo.js"></script>
   <script>
     function check() {
+      
       if (document.form_search.pre_name.value == "") {
 
         Swal({
@@ -160,15 +175,24 @@
             })
         document.form_search.pre_name.focus();
         return false;
-      }  else if (document.form_search.user_name.value == "") {
+      }  else if (document.form_search.file.value == "") {
 
        Swal({
             type: 'error',
-            title: 'กรุณา กรอกชื่อ',
+            title: 'ใส่ภาพประจำตัว',
             footer: ''
             })
-        document.form_search.user_name.focus();
+        document.form_search.file.focus();
         return false;
+      }  else if (document.form_search.user_name.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอกชื่อ',
+     footer: ''
+     })
+ document.form_search.user_name.focus();
+ return false;
       } else if (document.form_search.user_lastname.value == "") {
 
 Swal({

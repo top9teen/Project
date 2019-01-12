@@ -21,6 +21,13 @@ class userModel
     public $usertel;
     public $useremail;
     public $userpassword;
+    public $img;
+
+    public $user_password;
+    public $user_lastname;
+    public $user_email;
+    public $user_name;
+    public $pre_name;
 
     // constructor with $db as database connection
     public function __construct($db)
@@ -28,7 +35,7 @@ class userModel
         $this->conn = $db;
     }
 
-
+    // login 
     public function get()
     {
         $query = "SELECT * FROM tb_user WHERE user_email = :username AND user_password = :password";
@@ -44,11 +51,15 @@ class userModel
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     
                     // set values to object properties
-                $this->id = $row['id'];
-                $this->username = $row['username'];
-                $this->password = $row['password'];
-                $this->status   = $row['status'];
-
+                    $this->user_password = $row['user_password'];
+                    $this->user_lastname = $row['user_lastname'];
+                    $this->user_email    = $row['user_email'];
+                    $this->user_name     = $row['user_name'];
+                    $this->pre_name      = $row['pre_name'];
+                    $this->status        = $row['user_status'];
+                    $this->img           = $row['user_img'];
+                    $this->id            = $row['id'];
+                
                 } else {
                     return $stmt;
                 }
@@ -62,7 +73,7 @@ class userModel
     public function insert()
     {
             // query to insert record
-            $query = "INSERT INTO tb_user (pre_name,user_name,user_lastname,user_id,user_majer,user_year,user_moo,user_tel,user_email,user_password) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO tb_user (pre_name,user_name,user_lastname,user_id,user_majer,user_year,user_moo,user_tel,user_email,user_password,user_status,user_img) VALUES(?,?,?,?,?,?,?,?,?,?,'1',?)";
 
             // prepare query
            $stmt = $this->conn->prepare($query);    
@@ -77,6 +88,7 @@ class userModel
             $stmt->bindParam(8, $this->usertel);
             $stmt->bindParam(9, $this->useremail);
             $stmt->bindParam(10, $this->userpassword);
+            $stmt->bindParam(11, $this->img);
             // execute query
             if($stmt->execute()){
                 return true;

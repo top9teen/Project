@@ -29,13 +29,13 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
             <i class="ion ion-android-person d-lg-none"></i>
-            <div class="d-sm-none d-lg-inline-block">บุคคลทั่วไป</div></a>
+            <div class="d-sm-none d-lg-inline-block">{type}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <!-- <a href="profile.html" class="dropdown-item has-icon">
                 <i class="ion ion-android-person"></i> Profile
               </a> -->
-              <a href="login.php" class="dropdown-item has-icon">
-                <i class="ion ion-log-out"></i> เข้าสู่ระบบ
+              <a href="logout.php" class="dropdown-item has-icon">
+                <i class="ion ion-log-out"></i> ออกจากระบบ
               </a>
             </div>
           </li>
@@ -48,19 +48,19 @@
           </div>
           <div class="sidebar-user">
             <div class="sidebar-user-picture">
-              <img alt="image" src="assets/img/avatar/avatar-6.jpeg">
+              <img alt="image" src="{img}">
             </div>
             <div class="sidebar-user-details">
-              <div class="user-name">User ทดลอง</div>
+              <div class="user-name">{pre_name} {user_name} {user_lastname}</div>
               <div class="user-role">
-                บุคคลทั่วไป
+                {type}
               </div>
             </div>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">หน้าแรก</li>
             <li class="active">
-              <a href="index.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
+              <a href="indexmember.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
             </li>
 
             <li class="menu-header">เมนู</li>
