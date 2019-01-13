@@ -1,5 +1,5 @@
 <?php
-class activties_Model
+class activties_ModelMe
 {
 
     // database connection and table name

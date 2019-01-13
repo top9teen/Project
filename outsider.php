@@ -1,5 +1,4 @@
 <?php
-
 require_once 'lib/template.php';
 require_once 'config/database.php';
 require_once 'models/userModel.php';

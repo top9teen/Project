@@ -58,30 +58,33 @@
             </div>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">หน้าแรก</li>
+            <li class="menu-header">กิจกรรม</li>
             <li class="active">
-              <a href="indexmember.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
+              <a href="/Projected/indexmember.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
             </li>
 
             <li class="menu-header">เมนู</li>
             <li>
-              <a href="M1/controller/activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
+              <a href="/Projected/M1/controller/activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
             </li>
             <li>
-              <a href="M2/controller/activitty.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
+              <a href="/Projected/M5/controller/activitiesMe.php"><i class="ion ion-clipboard"></i><span>กิจกรรมที่เลือก</span></a>
             </li>
             <li>
-              <a href="M3/controller/report_activitty.php"><i class="ion ion-document-text"></i><span>รายงานการทำกิจกรรม</span></a>
+              <a href="/Projected/M2/controller/activittyMe.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
             </li>
             <li>
-              <a href="../../M4/controller/pro_activitty.php"><i class="ion ion-ios-people"></i><span>ข้อมูลนักศึกษา</span></a>
+              <a href="/Projected/M3/controller/report_activitty.php"><i class="ion ion-document-text"></i><span>รายงานการทำกิจกรรม</span></a>
+            </li>
+            <li>
+              <a href="/Projected/M4/controller/pro_activitty.php"><i class="ion ion-ios-people"></i><span>ข้อมูลนักศึกษา</span></a>
             </li>
         </aside>
       </div>
       <div class="main-content">
         <section class="section">
           <h1 class="section-header">
-            <div >หน้าแรก</div>
+            <div >กิจกรรม</div>
           </h1>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
@@ -99,6 +102,7 @@
                                       <th>เทอม</th>
                                       <th>ชั่วโมง</th>
                                       <th>ผู้เข้าร่วม</th>
+    
                                     </tr>
                               </thead>
                               <tbody>
@@ -107,7 +111,7 @@
                                         {request.no}
                                         <td>
                                           <span>
-                                            <a onclick="open()">{request.activities_name}</a>
+                                            <a href="/Projected/M1/controller/activitiesPage1.php?id={request.id}">{request.activities_name}</a>
                                           </span>
                                         </td>
                                         <td>{request.activities_createdate}</td>
@@ -162,11 +166,6 @@ $(document).ready(function () {
             "<'row be-datatable-footer'<'col-sm-5'i><'col-sm-7'p>>"
     });
 });
-  function open(){
-
-
-    alert("sssssssss");
-  }
   var ctx = document.getElementById("myChart").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
