@@ -109,13 +109,13 @@ function reformatStatusBenefits($status)
 }
 function reformatStatusMedical($status)
 {
-    if ($status == 0) {
-        return "รอตรวจสอบเอกสาร";
-    } else if ($status == 1) {
-        return "ตรวจเอกสารแล้ว";
+    if ($status == 1) {
+        return "เข้าร่วม";
     } else if ($status == 2) {
-        return "รอเอกสารเพิ่มเติม";
-    }
+        return "ทำแล้ว";
+    } else if ($status == 2) {
+        return "ยกเลิก";
+    } 
 }
 
 function reformatCertificate($request_form)
