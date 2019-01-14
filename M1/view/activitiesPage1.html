@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="/Projected/assets/css/demo.css">
   <link rel="stylesheet" href="/Projected/assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="/Projected/assets/lib/datatables/datatables.net-bs4/css/dataTables.bootstrap4.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.css">
 
 </head>
 
@@ -68,6 +70,9 @@
               <a href="activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
             </li>
             <li>
+              <a href="/Projected/M5/controller/activitiesMe.php"><i class="ion ion-clipboard"></i><span>กิจกรรมที่เลือก</span></a>
+            </li>
+            <li>
               <a href="M2/controller/activitty.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
             </li>
             <li>
@@ -87,41 +92,148 @@
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
               <div class="card">
                 <div class="card-body">
-                      <div class="table-responsive">
-                          <table id="table2" class="table table-striped">
-                            <thead>
-                                  <tr>
-                                      <th >No</th>
-                                      <th>ชื่อกิจกรรม</th>
-                                      <th>วันที่สร้าง</th>
-                                      <th>วันที่สิ้นสุด</th>
-                                      <th>ปีการศึกษา</th>
-                                      <th>เทอม</th>
-                                      <th>ชั่วโมง</th>
-                                      <th>ผู้เข้าร่วม</th>
-                                    </tr>
-                              </thead>
-                              <tbody>
-                                     <!-- BEGIN request -->
-                                    <tr>
-                                        {request.no}
-                                        <td>
-                                          <span>
-                                            <a onclick="open()">{request.activities_name}</a>
-                                          </span>
-                                        </td>
-                                        <td>{request.activities_createdate}</td>
-                                        <td>{request.activities_enddate}</td>
-                                        <td>{request.activities_year}</td>
-                                        <td>{request.activities_trem}</td>
-                                        <td>{request.activities_hour}</td>
-                                        <td>{request.activities_join} / {request.activities_total}</td>
-                                    </tr>
-                                     <!-- END request -->
-                              </tbody>
-                          </table>
-                  </div>
-              </div>
+                  <form name="form_search" id="form_search" action="insertPoint.php"  method="POST" onsubmit="return check()">
+                    <input name="empid" type="hidden" value="{id}">
+                    <input name="activities_year" type="hidden" value="{activities_year}">
+                    <input name="activities_trem" type="hidden" value="{activities_trem}">
+                    <input name="activities_total" type="hidden" value="{activities_total}">
+                    <input name="activities_join" type="hidden" value="{activities_join}">
+                    
+                    <div class="row">
+                        <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">ชื่อกิจกรรม</label>
+                              </div>
+                            <div class="col-md-8">
+                              <label for="prename">{activities_name}</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                <label for="prename">สถานที่</label>
+                                </div>
+                              <div class="col-md-8">
+                                <label for="prename">{activities_location}</label>
+                              </div>
+                            </div> 
+                         </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">ลักษณะกิจกรรม</label>
+                              </div>
+                            <div class="col-md-5">
+                              <label for="prename">{activities_aspect}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">เวลาช่วงเช้า</label>
+                              </div>
+                            <div class="col-md-5">
+                              <label for="prename">{activities_timeday}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">เวลาช่วงบ่าย</label>
+                              </div>
+                            <div class="col-md-5">
+                              <label for="prename">{activities_timenint}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <label>ชั่วโมงที่ได้</label>
+                              </div>
+                            <div class="col-md-3">
+                              <label>{activities_hour} ชั่วโมง</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">จำนวนคนที่เข้าร่วม / จำนวนทั้งหมด</label>
+                              </div>
+                            <div class="col-md-2">
+                              <label for="prename">{activities_join} / {activities_total}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">รายละเอียดกิจกรรม</label>
+                              </div>
+                            <div class="col-md-8">
+                            <label for="prename">{activities_detill}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                              <label for="prename">หน้าที่รับผิดชอบ</label>
+                              </div>
+                            <div class="col-md-8">
+                              <label for="prename">{activities_aspect}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                                            <label for="prename">ปีการศึกษา</label>
+                              </div>
+                            <div class="col-md-5">
+                              <label for="prename">{activities_year}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group col-12">
+                          <div class="row">
+                              <div class="col-md-2">
+                                  <label>ภาคเรียน</label>
+                              </div>
+                            <div class="col-md-3">
+                                  <label>{activities_trem}</label>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="col-12 col-md-6 col-lg-11">
+                          
+                            <div class="card-header text-right">
+                              ยืนยันเข้าร่วมกิจกรรม
+                            </div>
+                            <div class="card-body text-right">
+                              <button type="submit" name="submit" class="btn btn-lg btn-success">ตกลง</button>
+                              <a href="activities.php" class="btn btn-lg btn-warning">ยกเลิก</a>
+                            </div>
+                          
+                        </div>
+                  </form>
+                </div>
             </div>
           </div>
         </section>
@@ -146,27 +258,6 @@
   <script src="/Projected/assets/js/demo.js"></script>
 
   <script>
-
-$(document).ready(function () {
-      //initialize the javascript
-      $("#table2").dataTable({
-      "language": {
-        "info": "กำลังแสดงหน้า _PAGE_ จากทั้งหมด _PAGES_ หน้า",
-        "paginate": {
-          "previous": "หน้าก่อนหน้า",
-          "next": "หน้าถัดไป"
-        }
-      },
-      pageLength: 5,
-      dom:  "<'row be-datatable-body'<'col-sm-12'tr>>" +
-            "<'row be-datatable-footer'<'col-sm-5'i><'col-sm-7'p>>"
-    });
-});
-  function open(){
-
-
-    alert("sssssssss");
-  }
   var ctx = document.getElementById("myChart").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -203,6 +294,16 @@ $(document).ready(function () {
     }
   });
 
+  function check() {
+    var r = confirm("ยืนยัน");
+if (r == true) {
+  txt = "ตกลง!";
+  return true;
+} else {
+  txt = "ยกเลิก!";
+  return false;
+}
+}
   </script>
 </body>
 </html>
