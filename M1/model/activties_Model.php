@@ -102,7 +102,7 @@ class activties_Model
     public function create()
     {
         // query to insert record
-        $query = "INSERT INTO tb_joinactivity (jo_activties,jo_userid,jo_status,jo_crdate,jo_trem,jo_year) VALUES(?,?,'1',?,?,?)";
+        $query = "INSERT INTO tb_joinactivity (jo_activties,jo_userid,jo_status,jo_crdate,jo_trem,jo_year,jo_statusadmin) VALUES(?,?,'1',?,?,?,'0')";
 
         // prepare query
         $stmt = $this->conn->prepare($query);

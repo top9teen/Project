@@ -31,7 +31,7 @@
             <i class="ion ion-android-person d-lg-none"></i>
             <div class="d-sm-none d-lg-inline-block">{type}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="profile.html" class="dropdown-item has-icon">
+              <a href="/Projected/M4/controller/pro_activitty.php" class="dropdown-item has-icon">
                 <i class="ion ion-android-person"></i> ประวัติส่วนตัว
               </a>
               <a href="../../logout.php" class="dropdown-item has-icon">
@@ -59,7 +59,7 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">กิจกรรม</li>
-            <li class="active">
+            <li>
               <a href="/Projected/indexmember.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
             </li>
 
@@ -67,11 +67,11 @@
             <li>
               <a href="/Projected/M1/controller/activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
             </li>
-            <li>
+            <li class="active">
               <a href="/Projected/M5/controller/activitiesMe.php"><i class="ion ion-clipboard"></i><span>กิจกรรมที่เลือก</span></a>
             </li>
             <li>
-              <a href="/Projected/M2/controller/activitty.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
+              <a href="/Projected/M2/controller/make_activitty.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
             </li>
             <li>
               <a href="/Projected/M3/controller/report_activitty.php"><i class="ion ion-document-text"></i><span>รายงานการทำกิจกรรม</span></a>
@@ -121,7 +121,7 @@
                                         <td>{request.activities_trem}</td>
                                         <td>{request.activities_hour}</td>
                                         <td>{request.activities_join} / {request.activities_total}</td>
-                                        <td>{request.statusTallo}</td>
+                                        <td> <div class="badge badge-success">{request.statusTallo}</div></td>
                                     </tr>
                                      <!-- END request -->
                               </tbody>

@@ -5,32 +5,29 @@ require '../../session.php';
 require_once '../../common.php';
 require_once '../../lib/template.php';
 require_once '../../config/database.php';
-require_once '../../M1/model/activties_Model.php';
+require_once '../model/make_activitty.php';
+include '../../utils/base_function.php';
 
 //prepare template
 $template = new template();
 $template->set_filenames(array(
-    'body' => '../view/UC_HRBO_206.html')
+    'body' => '../view/make_activitty.html')
 );
 
 //get database connection
 $database = new Database();
 $db = $database->getConnection();
 
-// Seach value
-$search = "";
 
 // prepare product object
-$model = new HRBO_206_Model($db);
+$model = new make_activitty($db);
+
+    $model->id = $_SESSION["id"];
+
 if (isset($_POST["search"])) {
-    $search = "search";
 
-    $dept_code = isNotEmpty($_POST["dept_name"])? isNotEmpty($_POST["dept_id"]) : null ;
-    $dept_code = str_replace("(","",$dept_code);
-    $dept_code = str_replace(")","",$dept_code);
-
-    $model->dept_code = isNotEmpty($dept_code);
     $model->req_no = isNotEmpty($_POST["req_no"]);
+    $model->dept_name = isNotEmpty($_POST["dept_name"]);
     $model->emp_name = isNotEmpty($_POST["emp_name"]);
     $model->sdate = strToDateSdate(isNotEmpty($_POST["sdate"]));
     $model->edate = strToDateEdate(isNotEmpty($_POST["edate"]));
@@ -64,16 +61,15 @@ if (isset($_POST["search"])) {
     $rpt_url = str_replace("{req_status}", $filter_req_status, $rpt_url);
 
     $template->assign_var("dept_name", isNotEmpty($_POST["dept_name"]));
-    $template->assign_var("dept_id", isNotEmpty($_POST["dept_id"]));
     $template->assign_var("req_no", isNotEmpty($_POST["req_no"]));
     $template->assign_var("emp_name", isNotEmpty($_POST["emp_name"]));
     $template->assign_var("sdate", isNotEmpty($_POST["sdate"]));
     $template->assign_var("edate", isNotEmpty($_POST["edate"]));
-    $template->assign_var("search", isNotEmpty($search));
+
     $template->assign_var("rpt_url", $rpt_url);
 
 } else {
-    $search = "search";
+
     $rpt_url = RPT_SERVER_ADDRESS;
     $rpt_url = str_replace("{reportUnit}", "/reports/aomsinbo/UC_HRBO_206", $rpt_url);
     $rpt_url = str_replace("{req_no}", "",$rpt_url);
@@ -83,7 +79,6 @@ if (isset($_POST["search"])) {
     $rpt_url = str_replace("{emp_name}", "",$rpt_url);
     $rpt_url = str_replace("{req_status}", "0" ,$rpt_url);
     
-    $template->assign_var("search", isNotEmpty($search));
     $template->assign_var("rpt_url", $rpt_url);
     $template->assign_var("checked_0", "checked=''");
     $stmt = $model->getAll();
@@ -97,9 +92,8 @@ if ($num > 0) {
     $count = 1;
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $row["no"] = $count;
-        $row["reqdatetime"] = date("Y-m-d H:i", strtotime($row["reqdatetime"]));
-        $row["effectiveDate"] = date("Y-m-d H:i", strtotime($row["effectiveDate"]));
-        $row["req_status"] = reformatStatusResign($row["reqstatus"]);
+        $row["adminstatus"] = reformatStatusResign($row["adminstatus"]);
+        $row["activities_enddate"] = date("Y-m-d H:i", strtotime($row["activities_enddate"]));
         $template->assign_block_vars('request', $row);
         unset($rows);
         $count++;
@@ -107,7 +101,13 @@ if ($num > 0) {
 }
 
 $data = array(
-    "menu_item" => 2,
+    "username" => $_SESSION["username"],
+    "type"     => $_SESSION["type"],
+    "pre_name" => $_SESSION["pre_name"],
+    "user_name" => $_SESSION["user_name"],
+    "user_lastname" => $_SESSION["user_lastname"],
+    "img" => $_SESSION["img"],
+
 );
 
 $template->assign_vars($data);

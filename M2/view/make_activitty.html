@@ -64,13 +64,13 @@
             </li>
 
             <li class="menu-header">เมนู</li>
-            <li class="active">
+            <li>
               <a href="/Projected/M1/controller/activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
             </li>
             <li>
               <a href="/Projected/M5/controller/activitiesMe.php"><i class="ion ion-clipboard"></i><span>กิจกรรมที่เลือก</span></a>
             </li>
-            <li>
+            <li class="active">
               <a href="/Projected/M2/controller/make_activitty.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
             </li>
             <li>
@@ -84,42 +84,132 @@
       <div class="main-content">
         <section class="section">
           <h1 class="section-header">
-            <div >กิจกรรม</div>
+            <div >การทำกิจกรรม</div>
           </h1>
           <div class="row">
+         
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
               <div class="card">
+                
                 <div class="card-body">
+                    <button type="button" class="btn btn-space btn-secondary btn-big" onclick="window.open('{rpt_url}');">
+                        <i class="ion-ios-print"></i> พิมพ์รายงาน PDF
+                        <i class="icon ion-ios-print"></i>
+                      </button>
+                      <button type="button" class="btn btn-space btn-secondary btn-big" onclick="window.open('{xlsx_url}');">
+                        <i class="icon icon-left mdi mdi-file"></i> พิมพ์รายงาน Excel
+                      </button>
+                      
+                  <div class="row">
+                    <div class="col-12 col-lg-12 col-md-3 col-sm-12">
+                        <br>
+                      <form name="form_search" id="form_search" action="make_activitty.php" method="POST" onsubmit="return check()">
+                          <div class="row">
+                            <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                              <span class="table-filter-title">ชื่อกิจกรรม</span>
+                              <div class="filter-container">
+                                <input name="req_no" placeholder="" type="text" class="form-control" value="{req_no}">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+                              <span class="table-filter-title">วันที่กิจกรรม</span>
+                              <div class="filter-container">
+                                <div class="row">
+                                  <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <input id="sdate" value="{sdate}" name="sdate" data-min-view="2" data-date-format="dd-mm-yyyy" autocomplete="off" placeholder="วันที่เริ่มต้น" type="text" class="form-control form-control-sm datetimepicker">
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <input id="edate" value="{edate}" name="edate" data-min-view="2" data-date-format="dd-mm-yyyy" autocomplete="off" placeholder="วันที่สิ้นสุด" type="text" class="form-control form-control-sm datetimepicker">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                              <span class="table-filter-title">ปีการศึกษา</span>
+                              <div class="filter-container">
+                                <input name="emp_name" placeholder="" type="text" class="form-control" value="{emp_name}">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                                <span class="table-filter-title">เทอม</span>
+                                <div class="filter-container">
+                                  <input name="dept_name" placeholder="" type="text" class="form-control" value="{dept_name}">
+                                </div>
+                              </div>
+                              <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                                  <span class="table-filter-title">สถานะ</span>
+                                  <div class="filter-container">
+                                      <div class="">
+                                          <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                              <input name="req_status[]" value="0" id="checkbox0" type="checkbox" {checked_0} class="custom-control-input">
+                                              <span class="custom-control-label">รอประเมิน</span>
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div>
+                                          <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                              <input name="req_status[]" value="1" id="checkbox1" type="checkbox" {checked_1} class="custom-control-input">
+                                              <span class="custom-control-label">ผ่านกิจกรรม</span>
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div>
+                                            <div class="custom-controls-stacked">
+                                              <label class="custom-control custom-checkbox">
+                                                <input name="req_status[]" value="2" id="checkbox2" type="checkbox" {checked_2} class="custom-control-input">
+                                                <span class="custom-control-label">ไม่ผ่านกิจกรรม</span>
+                                              </label>
+                                            </div>
+                                          </div>
+                                  </div>
+                                </div>
+                          </div>
+              
+                          <div class="row">
+                              <div class="col-6 col-lg-4 col-sm-6">
+                                  <button name="search" type="submit" class="btn btn-space btn-dark">
+                                      <i class="icon icon-left mdi mdi-search"></i> ค้นหา</button>
+                                  <button name="" type="button" onclick="RecCheck();" class="btn btn-space btn-primary">
+                                    <i class="icon icon-left mdi mdi-refresh"></i> เคลียร์ค่า </button>
+                              </div>
+                            </div>
+                        </form>
+                  </div>
+                </div>
                       <div class="table-responsive">
                           <table id="table2" class="table table-striped">
                             <thead>
                                   <tr>
                                       <th >No</th>
                                       <th>ชื่อกิจกรรม</th>
-                                      <th>วันที่สร้าง</th>
-                                      <th>วันที่สิ้นสุด</th>
+                                      <th>วันที่เริ่มกิจกรรม</th>
                                       <th>ปีการศึกษา</th>
                                       <th>เทอม</th>
                                       <th>ชั่วโมง</th>
                                       <th>ผู้เข้าร่วม</th>
+                                      <th>ประเมินจาก Admin</th>
     
                                     </tr>
                               </thead>
                               <tbody>
                                      <!-- BEGIN request -->
                                     <tr>
-                                        {request.no}
+                                      
+                                        <td>{request.no}</td>
                                         <td>
                                           <span>
                                             <a href="/Projected/M1/controller/activitiesPage1.php?id={request.id}">{request.activities_name}</a>
                                           </span>
                                         </td>
-                                        <td>{request.activities_createdate}</td>
                                         <td>{request.activities_enddate}</td>
                                         <td>{request.activities_year}</td>
                                         <td>{request.activities_trem}</td>
                                         <td>{request.activities_hour}</td>
                                         <td>{request.activities_join} / {request.activities_total}</td>
+                                        <td>{request.adminstatus}</td>
                                     </tr>
                                      <!-- END request -->
                               </tbody>
@@ -202,6 +292,17 @@ $(document).ready(function () {
     }
   });
 
+  function RecCheck() {
+    document.form_search.sdate.value = "";
+    document.form_search.edate.value = "";
+    document.form_search.req_no.value = "";
+    document.form_search.dept_name.value = "";
+    document.form_search.emp_name.value = "";
+    document.getElementById("checkbox0").checked = false;
+    document.getElementById("checkbox1").checked = false;
+    document.getElementById("checkbox2").checked = false;
+    // document.form_search.req_status[].checked  = false;
+  }
   </script>
 </body>
 </html>

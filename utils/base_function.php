@@ -65,13 +65,11 @@ function reformatStatus($status)
 function reformatStatusResign($status)
 {
     if ($status == 0) {
-        return "รอพิจารณา";
+        return "รอประเมิน";
     } else if ($status == 1) {
-        return "ส่งออกข้อมูล";
+        return "ผ่านกิจกรรม";
     } else if ($status == 2) {
-        return "ยกเลิกลาออก";
-    } else if ($status == 3) {
-        return "--ไม่มีค่า";
+        return "ไม่ผ่านกิจกรรม";
     }
 }
 

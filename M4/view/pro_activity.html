@@ -61,12 +61,12 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">หน้าแรก</li>
-            <li>
+            <li >
               <a href="/Projected/indexmember.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
             </li>
 
             <li class="menu-header">เมนู</li>
-            <li class="active">
+            <li>
               <a href="/Projected/M1/controller/activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
             </li>
             <li>
@@ -78,7 +78,7 @@
             <li>
               <a href="/Projected/M3/controller/report_activitty.php"><i class="ion ion-document-text"></i><span>รายงานการทำกิจกรรม</span></a>
             </li>
-            <li>
+            <li class="active">
               <a href="/Projected/M4/controller/pro_activitty.php"><i class="ion ion-ios-people"></i><span>ข้อมูลนักศึกษา</span></a>
             </li>
         </aside>
@@ -102,126 +102,133 @@
                     <div class="row">
                         <div class="form-group col-12">
                           <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">ชื่อกิจกรรม</label>
+                              <div class="col-md-4">
                               </div>
-                            <div class="col-md-8">
-                              <label for="prename">{activities_name}</label>
+                              <div class="col-md-4">
+                                <h1 for="prename">ประวัติส่วนตัว</h1>
                             </div>
+                            <div class="col-md-4">
+                             </div>
                           </div>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="{user_img}" alt=""  style="width: 300px;height: 300px;"/>
+                          </div>
+                          <div class="col-md-4">
+                           </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2">
+                           <label> คำนำหน้า</label>
+                          </div>
+                          <div class="col-md-7">
+                                <label>{pre_name}</label>
+                           </div>
                         </div>
 
-                        <div class="form-group col-12">
-                            <div class="row">
-                                <div class="col-md-2">
-                                <label for="prename">สถานที่</label>
+                        <div class="row">
+                                <div class="col-md-3">
                                 </div>
-                              <div class="col-md-8">
-                                <label for="prename">{activities_location}</label>
+                                <div class="col-md-2">
+                               <label>ชื่อ</label>
                               </div>
-                            </div> 
-                         </div>
-
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">ลักษณะกิจกรรม</label>
-                              </div>
-                            <div class="col-md-5">
-                              <label for="prename">{activities_aspect}</label>
+                              <div class="col-md-7">
+                                    <label>{user_name}</label>
+                               </div>
                             </div>
-                          </div>
-                      </div>
 
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">เวลาช่วงเช้า</label>
-                              </div>
-                            <div class="col-md-5">
-                              <label for="prename">{activities_timeday}</label>
-                            </div>
-                          </div>
-                      </div>
+                            <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-2">
+                                   <label>นามสกุล</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                        <label>{user_lastname}</label>
+                                   </div>
+                                </div>
 
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">เวลาช่วงบ่าย</label>
-                              </div>
-                            <div class="col-md-5">
-                              <label for="prename">{activities_timenint}</label>
-                            </div>
-                          </div>
-                      </div>
+                                <div class="row">
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-2">
+                                       <label>รหัสนักศึกษา</label>
+                                      </div>
+                                      <div class="col-md-7">
+                                            <label>{user_id}</label>
+                                       </div>
+                                    </div>
+                                    
+                                <div class="row">
+                                        <div class="col-md-3">
+                                        </div>
+                                        <div class="col-md-2">
+                                       <label>สาชาวิชา</label>
+                                      </div>
+                                      <div class="col-md-7">
+                                            <label>{branch}</label>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-3">
+                                            </div>
+                                            <div class="col-md-2">
+                                           <label>ชั้นปี</label>
+                                          </div>
+                                          <div class="col-md-7">
+                                                <label>{user_year}</label>
+                                           </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-3">
+                                                </div>
+                                                <div class="col-md-2">
+                                               <label>หมู่เรียน</label>
+                                              </div>
+                                              <div class="col-md-7">
+                                                    <label>{user_moo}</label>
+                                               </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-3">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                   <label>เบอร์โทร</label>
+                                                  </div>
+                                                  <div class="col-md-7">
+                                                        <label>{user_tel}</label>
+                                                   </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-md-3">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                       <label>E-mail</label>
+                                                      </div>
+                                                      <div class="col-md-7">
+                                                            <label>{user_email}</label>
+                                                       </div>
+                                                    </div>
+                                                    <div class="row">
+                                                            <div class="col-md-3">
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                           <label>รหัส</label>
+                                                          </div>
+                                                          <div class="col-md-7">
+                                                                <label>************</label>
+                                                           </div>
+                                                        </div>
+                          <!-- end -->
+                        </div>
 
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                                  <label>ชั่วโมงที่ได้</label>
-                              </div>
-                            <div class="col-md-3">
-                              <label>{activities_hour} ชั่วโมง</label>
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">จำนวนคนที่เข้าร่วม / จำนวนทั้งหมด</label>
-                              </div>
-                            <div class="col-md-2">
-                              <label for="prename">{activities_join} / {activities_total}</label>
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">รายละเอียดกิจกรรม</label>
-                              </div>
-                            <div class="col-md-8">
-                            <label for="prename">{activities_detill}</label>
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                              <label for="prename">หน้าที่รับผิดชอบ</label>
-                              </div>
-                            <div class="col-md-8">
-                              <label for="prename">{activities_aspect}</label>
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                                            <label for="prename">ปีการศึกษา</label>
-                              </div>
-                            <div class="col-md-5">
-                              <label for="prename">{activities_year}</label>
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group col-12">
-                          <div class="row">
-                              <div class="col-md-2">
-                                  <label>ภาคเรียน</label>
-                              </div>
-                            <div class="col-md-3">
-                                  <label>{activities_trem}</label>
-                            </div>
-                          </div>
-                      </div>
-
-                      <div class="col-12 col-md-6 col-lg-11">
+                      <!-- <div class="col-12 col-md-6 col-lg-11">
                           
                             <div class="card-header text-right">
                               ยืนยันเข้าร่วมกิจกรรม
@@ -231,7 +238,7 @@
                               <a href="activities.php" class="btn btn-lg btn-warning">ยกเลิก</a>
                             </div>
                           
-                        </div>
+                        </div> -->
                   </form>
                 </div>
             </div>
