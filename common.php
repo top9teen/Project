@@ -2,7 +2,7 @@
 $host                      = "http://localhost/Projected";
 $host_jasper_service       = "http://localhost:8080";
 $host_jasper_username      = "jasperadmin";
-$host_jasper_password      = "P@ssw0rd";
+$host_jasper_password      = "jasperadmin";
 
 error_reporting(0);
 date_default_timezone_set('Asia/Bangkok');

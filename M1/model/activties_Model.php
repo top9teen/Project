@@ -45,7 +45,7 @@ class activties_Model
                     jo.jo_status AS status
                     FROM tb_activities AS ac  
                     LEFT JOIN tb_joinactivity AS jo ON ac.id = jo.jo_activties
-                    WHERE ac.activities_status = '0' AND ac.activities_max ='A' 
+                    WHERE ac.activities_status = '0' AND ac.activities_max ='N' 
                     ORDER BY ac.activities_hour DESC, 
                             ac.activities_join DESC";
 
@@ -111,7 +111,7 @@ class activties_Model
         $this->jo_userid = htmlspecialchars(strip_tags($this->jo_userid));
         $this->jo_crdate  = htmlspecialchars(strip_tags($this->jo_crdate));
         $this->jo_trem  = htmlspecialchars(strip_tags($this->jo_trem));
-        $this->jo_year  = htmlspecialchars(strip_tags($this->jo_crdate));
+        $this->jo_year  = htmlspecialchars(strip_tags($this->jo_year));
         // bind values
         $stmt->bindParam(1, $this->jo_activties2);
         $stmt->bindParam(2, $this->jo_userid);
@@ -130,6 +130,25 @@ class activties_Model
     public function update()
     {
         $query = "UPDATE tb_activities SET activities_join = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+             
+
+        // bind values
+        $stmt->bindParam(1, $this->activities_join);
+        $stmt->bindParam(2, $this->jo_activties2);
+
+
+        // execute the query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    public function update2()
+    {
+        $query = "UPDATE tb_activities SET activities_join = ? , activities_max = 'A' WHERE id = ?";
         $stmt = $this->conn->prepare($query);
              
 

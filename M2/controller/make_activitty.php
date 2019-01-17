@@ -77,7 +77,6 @@ if (isset($_POST["search"])) {
     $rpt_url = str_replace("{sdate}", "",$rpt_url);
     $rpt_url = str_replace("{id}", isNotEmpty($_SESSION["id"]), $rpt_url);
     $rpt_url = str_replace("{edate}", "",$rpt_url);
-    $rpt_url = str_replace("{org_id}", "",$rpt_url);
     $rpt_url = str_replace("{emp_name}", "",$rpt_url);
     $rpt_url = str_replace("{dept_name}", "", $rpt_url);
     $rpt_url = str_replace("{req_status}", "0" ,$rpt_url);

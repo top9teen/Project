@@ -28,11 +28,17 @@ $model->jo_crdate   =  Date('Y-m-d H:i:s');
 
 $num1 = $_POST["activities_join"];
 $num2 = $num1 + 1;
+$num3 = $_POST["activities_total"]  - $num2;
 
 $model->activities_join = $num2;
 $model->create();
 
-$model->update();
+if($num3 <= 0){
+    $model->update2();
+   
+}else{
+    $model->update();
+}
 
 $stmt = $model->getAll();
 

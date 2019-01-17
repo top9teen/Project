@@ -98,7 +98,7 @@ class userModel
 
     public function getAll()
     {
-        $query = "SELECT * FROM tb_activities WHERE activities_status = '0' AND activities_max ='A' ORDER BY activities_hour DESC,activities_join DESC";
+        $query = "SELECT * FROM tb_activities WHERE activities_status = '0' AND activities_max ='N' ORDER BY activities_hour DESC,activities_join DESC";
 
         $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         try {

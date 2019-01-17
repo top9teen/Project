@@ -52,7 +52,7 @@ class make_activitty
                     jo.jo_statusadmin AS adminstatus, jo.jo_status AS status
                     FROM tb_activities AS ac  
                     LEFT JOIN tb_joinactivity AS jo ON ac.id = jo.jo_activties
-                    WHERE  jo.jo_userid = :id AND ac.activities_status = '0'
+                    WHERE  jo.jo_userid = :id AND  jo.jo_statusadmin = '0'
                     ORDER BY  ac.activities_enddate DESC ";
 // 0 เปิด , 1 ปิด
 

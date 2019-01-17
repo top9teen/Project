@@ -5,7 +5,7 @@ var skin = function(color) {
 	if(color == 'default') return;
 	$("head").append($("<link/>", {
 		rel: 'stylesheet',
-		href: 'assets/css/skins/' + color + '.css',
+		href: '/Projected/assets/css/skins/' + color + '.css',
 		id: 'skin-css'
 	}));
 }
