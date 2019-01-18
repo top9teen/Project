@@ -55,10 +55,9 @@ if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["passwo
         
             $_SESSION["type"] = "นักศึกษา";
             header("location: /Projected/M0/controller/indexmember.php");
-        } else {
-           
+        } elseif ($_SESSION["status"] == "2") {  
             $_SESSION["type"] = "ผู้ดูแลระบบ";
-            header("location: /Projected/indexadmin.php");
+            header("location: /Projected/N0/controller/indexadmin.php");
         }
     }
     else

@@ -34,7 +34,7 @@ if($_SESSION["status"] == "1"){
     header("location: /Projected/M0/controller/indexmember.php");
     exit;
 }elseif ($_SESSION["status"] == "2") {
-    header("location: /Projected/M0/controller/indexmember.php");
+    header("location: /Projected/N0/controller/indexadmin.php");
     exit;
 }else{
     header("location: /Projected/outsider.php");

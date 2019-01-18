@@ -19,7 +19,7 @@ $db = $database->getConnection();
 $model = new userModel($db);
 
 $template->set_filenames(array(
-    'body' => '../view/indexmember.html')
+    'body' => '../view/indexadmin.html')
 );
 
 
