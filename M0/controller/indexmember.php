@@ -1,12 +1,18 @@
 <?php
  ob_start();
  session_start();
-require 'session.php';
-require_once 'common.php';
-require_once 'lib/template.php';
-require_once 'config/database.php';
-require_once 'models/userModel.php';
-include 'utils/base_function.php';
+
+require '../../session.php';
+
+require_once '../../common.php';
+
+require_once '../../lib/template.php';
+
+require_once '../../config/database.php';
+
+require_once '../../models/userModel.php';
+
+include '../../utils/base_function.php';
 
 $template = new template();
    
@@ -18,7 +24,7 @@ $db = $database->getConnection();
 $model = new userModel($db);
 
 $template->set_filenames(array(
-    'body' => 'indexmember.html')
+    'body' => '../view/indexmember.html')
 );
 
 

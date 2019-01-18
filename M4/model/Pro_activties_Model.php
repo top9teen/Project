@@ -59,6 +59,7 @@ class Pro_activties_Model
                 $this->user_status      = $row['user_status'];
                 $this->branch           = $row['branch'];
                 $this->id               = $row['id'];
+                $this->branch_id        = $row['user_majer'];
 
             } else {
                 return $stmt;
@@ -68,5 +69,38 @@ class Pro_activties_Model
         }
     }
 
+    // insert  new user
+    public function update()
+    {
+                // query to insert record
+                $query = "UPDATE tb_user  SET pre_name = ?, user_name = ?, user_lastname = ?,
+                user_id = ? ,user_majer = ?, user_year = ?, user_moo = ?, user_tel = ?,
+                user_email = ?, user_password = ?, user_status = '1', user_img = ?  WHERE id = ? ";
+    
+                // prepare query
+                $stmt = $this->conn->prepare($query);
+                // bind values
+
+                $stmt->bindParam(1, $this->pre_name);
+                $stmt->bindParam(2, $this->user_name);
+                $stmt->bindParam(3, $this->user_lastname);
+                $stmt->bindParam(4, $this->user_id);
+                $stmt->bindParam(5, $this->user_majer);
+                $stmt->bindParam(6, $this->user_year);
+                $stmt->bindParam(7, $this->user_moo);
+                $stmt->bindParam(8, $this->user_tel);
+                $stmt->bindParam(9, $this->user_email);
+                $stmt->bindParam(10, $this->user_password);
+                $stmt->bindParam(11, $this->user_img);
+                $stmt->bindParam(12, $this->id);
+
+                // execute query
+                if ($stmt->execute()) {
+                    return $stmt;
+                }
+            
+                return $stmt;
+        }
+    
 // end class
 }

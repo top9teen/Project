@@ -1,9 +1,10 @@
 <?php
+
 header('Content-Type: application/json');
 
-  require_once 'config/database.php';
-  require_once 'models/userModel.php';
-  require_once 'common.php';
+require_once '../../config/database.php';
+require_once '../../models/userModel.php';
+require_once '../../common.php';
 
 //get database connection
   $database          = new Database();
@@ -29,21 +30,21 @@ header('Content-Type: application/json');
 
     if (isset($_FILES['file']) && !empty($_FILES["file"])) {
     
-          $model->img = uploadFile(
+          $model->img = uploadFile23(
               basename($_FILES['file']['name']),
               $_FILES['file']['tmp_name'],
               $_FILES['file']['size']
           );
   }else{
-    $model->img ="/Projected/assets/upload/img/avatar-6.jpeq";
+    $model->img ="../../assets/upload/img/avatar-6.jpeq";
   }
    $model->insert();
     
-    header("location:login.php");
+    header("location:/Projected/login.php");
     exit;
 }
 
-function uploadFile($file_name, $file_tmp, $file_size)
+function uploadFile23($file_name, $file_tmp, $file_size)
 {
     if (isset($file_name) && isset($file_tmp)) {
         $errors   = array();
@@ -57,21 +58,15 @@ function uploadFile($file_name, $file_tmp, $file_size)
         if ($file_size > 2097152) {
             $errors[] = 'File size must be excately 2 MB';
         }
-
+        
         if (empty($errors) == true) {
-            $tmppath = "/Projected/assets/upload/img/" . uniqid() . '.' . $file_ext;
-            move_uploaded_file($file_tmp, $tmppath);
+           
+            $tmppath = "../../assets/upload/img/" . uniqid() . '.' . $file_ext;
+           move_uploaded_file($file_tmp, $tmppath);
+       
             return $tmppath;
         } else {
             return $errors;
         }
     }
 }
-
-
-
-
-
-
-
-    
