@@ -59,7 +59,7 @@ if (isset($_POST["search"])) {
 
     if ($num > 0) {     
         // ชมที่กำหนด
-        $Hour = 90;
+        $Hour = 18;
         // ชม ที่ รวมจาก DB
         $Total = 0;
 
