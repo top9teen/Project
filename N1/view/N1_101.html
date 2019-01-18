@@ -60,31 +60,31 @@
           <ul class="sidebar-menu">
             <li class="menu-header">หน้าแรก</li>
             <li >
-              <a href="/Projected/M0/controller/indexmember.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
+              <a href="/Projected/N0/controller/indexadmin.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
             </li>
 
             <li class="menu-header">เมนู</li>
-            <li>
-              <a href="/Projected/M1/controller/activities.php"><i class="ion ion-clipboard"></i><span>กิจกรรม</span></a>
-            </li>
-            <li>
-              <a href="/Projected/M5/controller/activitiesMe.php"><i class="ion ion-clipboard"></i><span>กิจกรรมที่เลือก</span></a>
-            </li>
             <li class="active">
-              <a href="/Projected/M2/controller/make_activitty.php"><i class="ion ion-ios-compose"></i><span>การทำกิจกรรม</span></a>
+              <a href="/Projected/N1/controller/N1_101.php"><i class="ion ion-clipboard"></i><span>กิจกรรมทั้งหมด</span></a>
             </li>
             <li>
-              <a href="/Projected/M3/controller/report_activitty.php"><i class="ion ion-document-text"></i><span>รายงานการทำกิจกรรม</span></a>
+              <a href=""><i class="ion ion-clipboard"></i><span>รายชื่อนักศึกษาทั้งหมด</span></a>
             </li>
             <li>
-              <a href="/Projected/M4/controller/pro_activitty.php"><i class="ion ion-ios-people"></i><span>ข้อมูลนักศึกษา</span></a>
+              <a href=""><i class="ion ion-ios-compose"></i><span>รายชื่อผู้เข้าร่วมกิจกรรม</span></a>
+            </li>
+            <li>
+              <a href=""><i class="ion ion-document-text"></i><span>รายงานการทำกิจกรรม</span></a>
+            </li>
+            <li>
+              <a href=""><i class="ion ion-ios-people"></i><span>เพิ่มกิจกรรม</span></a>
             </li>
         </aside>
       </div>
       <div class="main-content">
         <section class="section">
           <h1 class="section-header">
-            <div >การทำกิจกรรม</div>
+            <div >กิจกรรมทั้งหมด</div>
           </h1>
           <div class="row">
          
@@ -144,7 +144,7 @@
                                           <div class="custom-controls-stacked">
                                             <label class="custom-control custom-checkbox">
                                               <input name="req_status[]" value="0" id="checkbox0" type="checkbox" {checked_0} class="custom-control-input">
-                                              <span class="custom-control-label">รอประเมิน</span>
+                                              <span class="custom-control-label">คนยังไม่ครบ</span>
                                             </label>
                                           </div>
                                         </div>
@@ -152,7 +152,7 @@
                                           <div class="custom-controls-stacked">
                                             <label class="custom-control custom-checkbox">
                                               <input name="req_status[]" value="1" id="checkbox1" type="checkbox" {checked_1} class="custom-control-input">
-                                              <span class="custom-control-label">ผ่านกิจกรรม</span>
+                                              <span class="custom-control-label">คนครบ</span>
                                             </label>
                                           </div>
                                         </div>
@@ -160,7 +160,7 @@
                                             <div class="custom-controls-stacked">
                                               <label class="custom-control custom-checkbox">
                                                 <input name="req_status[]" value="2" id="checkbox2" type="checkbox" {checked_2} class="custom-control-input">
-                                                <span class="custom-control-label">ไม่ผ่านกิจกรรม</span>
+                                                <span class="custom-control-label">กิจกรรมที่หมดเวลา</span>
                                               </label>
                                             </div>
                                           </div>
@@ -171,7 +171,7 @@
                           <div class="row">
                               <div class="col-6 col-lg-4 col-sm-6">
                                   <button name="search" type="submit" class="btn btn-space btn-primary">
-                                      <i class="icon icon-left mdi mdi-search"></i> ค้นหา</button>
+                                      <i class="icon icon-left mdi mdi-refresh"></i> ค้นหา</button>
                                   <button name="" type="button" onclick="RecCheck();" class="btn btn-space btn-primary">
                                     <i class="icon icon-left mdi mdi-refresh"></i> เคลียร์ค่า </button>
                               </div>
@@ -190,7 +190,7 @@
                                       <th>เทอม</th>
                                       <th>ชั่วโมง</th>
                                       <th>ผู้เข้าร่วม</th>
-                                      <th>ประเมินจาก Admin</th>
+                                      <th>สถานะ</th>
     
                                     </tr>
                               </thead>
