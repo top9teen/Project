@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Fahkwang|Pridi|Prompt" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+  <title>ระบบการจัดการกิจเก็บชั่วโมงจิตอาสากองทุนกู้ยืมเพื่อการศึกษา</title>
+
+  <link rel="stylesheet" href="/Projected/assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/Projected/assets/modules/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/Projected//assets/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+
+  <link rel="stylesheet" href="/Projected/assets/modules/summernote/summernote-lite.css">
+  <link rel="stylesheet" href="/Projected/assets/modules/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="/Projected/assets/css/demo.css">
+  <link rel="stylesheet" href="/Projected/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/Projected/assets/lib/datatables/datatables.net-bs4/css/dataTables.bootstrap4.css" />
+  <link rel="stylesheet" type="text/css" href="/Projected/assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.min.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+         <form class="form-inline mr-auto">
+         <h4 style="color: rgb(245, 239, 239);">ระบบการจัดการกิจเก็บชั่วโมงจิตอาสากองทุนกู้ยืมเพื่อการศึกษา คณะวิทยาศาสตร์ มหาวิทยาลัยราชภัฏบุรีรัมย์</h4>
+        </form> 
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg">
+            <i class="ion ion-android-person d-lg-none"></i>
+            <div class="d-sm-none d-lg-inline-block">{type}</div></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="/Projected/M4/controller/pro_activitty.php" class="dropdown-item has-icon">
+                <i class="ion ion-android-person"></i> ประวัติส่วนตัว
+              </a>
+              <a href="../../logout.php" class="dropdown-item has-icon">
+                <i class="ion ion-log-out"></i> ออกจากระบบ
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="">มหาวิทยาลัยราชภัฏบุรีรัมย์</a>
+          </div>
+          <div class="sidebar-user">
+            <div class="sidebar-user-picture">
+              <img alt="image" src="{img}">
+            </div>
+            <div class="sidebar-user-details">
+              <div class="user-name">{pre_name} {user_name} {user_lastname}</div>
+              <div class="user-role">
+                {type}
+              </div>
+            </div>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">หน้าแรก</li>
+            <li >
+              <a href="/Projected/N0/controller/indexadmin.php"><i class="ion ion-ios-home"></i><span>หน้าแรก</span></a>
+            </li>
+
+            <li class="menu-header">เมนู</li>
+            <li>
+              <a href="/Projected/N1/controller/N1_101.php"><i class="ion ion-clipboard"></i><span>กิจกรรมทั้งหมด</span></a>
+            </li>
+            <li>
+              <a href="/Projected/N2/controller/N2_201.php"><i class="ion ion-clipboard"></i><span>รายชื่อนักศึกษาทั้งหมด</span></a>
+            </li>
+            <li >
+                <a href="/Projected/N3/controller/N3_301.php"><i class="ion ion-ios-compose"></i><span>ตรวจสอบผู้เข้าร่วม</span></a>
+            </li>
+            <li>
+                <a href="/Projected/N4/controller/N4_401.php"><i class="ion ion-ios-people"></i><span>ประวัติรายชื่อผู้เข้าร่วม</span></a>
+              </li>
+            <li class="active" >
+              <a href="/Projected/N5/controller/N5_501.php"><i class="ion ion-ios-people"></i><span>เพิ่มกิจกรรม</span></a>
+          </li>
+        </aside>
+      </div>
+      <div class="main-content">
+        <section class="section">
+          <h1 class="section-header">
+            <div >เพิ่มกิจกรรม</div>
+          </h1>
+          <div class="row">
+         
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+              <div class="card">
+                
+                <div class="card-body">
+                    <form method="POST" name="form_search" id="form_search" action="N5_502.php"  data-parsley-validate="" novalidate="" onsubmit="return check()" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="email">ชื่อกิจกรรม<span>*</span></label>
+                                <input id="activities_name" type="text" class="form-control" name="activities_name" autofocus>
+                                <div class="invalid-feedback">
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                              <label for="email">สถานที่กิจกรรม<span>*</span></label>
+                              <input id="activities_location" type="text" class="form-control" name="activities_location" autofocus>
+                              <div class="invalid-feedback">
+                              </div>
+                          </div>
+                        
+                          <div class="form-group col-6">
+                            <label for="frist_name">หน้าที่รับผิดชอบ<span>*</span></label>
+                            <input id="activities_aspect" type="text" class="form-control" name="activities_aspect" autofocus>
+                          </div>
+      
+                          <div class="form-group col-1">
+                              <label>เริ่มเวลาเช้า<span>*</span></label>
+                              <select class="form-control" id="activities_timeday" name="activities_timeday">
+                                <option value="">กรุณาเลือก...</option>
+                                <option value="07.00">07.00น</option>
+                                <option value="08.00"> 08.00น</option>
+                                <option value="09.00"> 09.00น</option>
+                                <option value="10.00">10.00น</option>
+                                <option value="11.00">11.00น</option>
+                                <option value="12.00">12.00น</option>
+                              </select>
+                          </div>
+                          
+                          <div class="form-group col-1">
+                            <label>เริ่มเวลาเช้า<span>*</span></label>
+                            <select class="form-control" id="activities_timeday2" name="activities_timeday2">
+                              <option value="">กรุณาเลือก...</option>
+                              <option value="07.00">07.00น</option>
+                              <option value="08.00"> 08.00น</option>
+                              <option value="09.00"> 09.00น</option>
+                              <option value="10.00">10.00น</option>
+                              <option value="11.00">11.00น</option>
+                              <option value="12.00">12.00น</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-1">
+                            <label>เริ่มเวลาบ่าย<span>*</span></label>
+                            <select class="form-control" id="activities_timenint" name="activities_timenint">
+                                <option value="">กรุณาเลือก...</option>
+                                <option value="13.00">13.00น</option>
+                                <option value="14.00"> 14.00น</option>
+                                <option value="15.00"> 15.00น</option>
+                                <option value="16.00">16.00น</option>
+                                <option value="17.00">17.00น</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-1">
+                            <label>เริ่มเวลาบ่าย<span>*</span></label>
+                            <select class="form-control" id="activities_timenint2" name="activities_timenint2">
+                                <option value="">กรุณาเลือก...</option>
+                                <option value="13.00">13.00น</option>
+                                <option value="14.00"> 14.00น</option>
+                                <option value="15.00"> 15.00น</option>
+                                <option value="16.00">16.00น</option>
+                                <option value="17.00">17.00น</option>
+                            </select>
+                        </div>
+                          <div class="form-group col-6">
+                              <label for="last_name">รายละเอียดกิจกรรม<span>*</span></label>
+                              <textarea rows="4" cols="50" id="activities_detill" class="form-control" name="activities_detill" ></textarea>
+                            </div>
+                            
+                          <div class="form-group col-6">
+                            <label for="last_name">วันที่่สิ้นสุดกิจกรรม<span>*</span></label>
+                            <input id="activities_enddate" autocomplete="off"  name="activities_enddate" data-min-view="2" data-date-format="dd/mm/yyyy" placeholder="วันที่สิ้นสุด" type="text" class="form-control datetimepicker">
+                          </div>
+
+
+                          <div class="form-group col-3">
+                            <label for="email">ปีการศึกษา<span>*</span></label>
+                            <select class="form-control" id="activities_year" name="activities_year">
+                              <option value="">กรุณาเลือก...</option>
+                              <option value="2561">2561</option>
+                              <option value="2562"> 2562</option>
+                              <option value="2563">2563</option>
+                              <option value="2564">2564</option>
+                              <option value="2565">2565</option>
+                          </select>
+                          </div>
+                          
+                          <div class="form-group col-3">
+                              <label for="email">เทอมการศึกษา<span>*</span></label>
+                              <select class="form-control" id="activities_trem" name="activities_trem">
+                                <option value="">กรุณาเลือก...</option>
+                                <option value="1">1</option>
+                                <option value="2"> 2</option>
+                                <option value="3">3</option> 
+                            </select>
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="last_name">ชั่วโมงที่ได้รับ<span>*</span></label>
+                                <input id="activities_hour" type="number" class="form-control" name="activities_hour" autofocus>
+                              </div>
+
+                              <div class="form-group col-3">
+                                <label for="last_name">รับจำนวนทั้งหมด<span>*</span></label>
+                                <input id="activities_total" type="number" class="form-control" name="activities_total" autofocus>
+                              </div>
+                        </div>
+      
+                        <div class="form-group">
+                          <div class="card-header">โปรดตรวจสอบข้อมูลก่อนยืนยัน<span>*</span></div>
+                          <button type="submit"id="search" name="search" class="btn btn-primary btn-block">
+                            ยืนยัน
+                          </button>
+                        </div>
+                      </form>
+                    <!-- end -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Projected/assets/modules/popper.js"></script>
+  <script src="/Projected/assets/modules/jquery.min.js"></script>
+  <script src="/Projected/assets/modules/tooltip.js"></script>
+  <script src="/Projected/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/Projected/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="/Projected/assets/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
+  <script src="/Projected/assets/js/sa-functions.js"></script>
+  <script src="/Projected/assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+  <script src="/Projected/assets/modules/chart.min.js"></script>
+  <script src="/Projected/assets/modules/summernote/summernote-lite.js"></script>
+  <script src="/Projected/assets/lib/datatables/datatables.net/js/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="/Projected/assets/lib/datatables/datatables.net-bs4/js/dataTables.bootstrap4.js" type="text/javascript"></script>
+  <script src="/Projected/assets/js/scripts.js"></script>
+  <script src="/Projected/assets/js/custom.js"></script>
+  <script src="/Projected/assets/js/demo.js"></script>
+
+  <script>
+
+$(document).ready(function () {
+      //initialize the javascript
+      $("#table2").dataTable({
+      "language": {
+        "info": "กำลังแสดงหน้า _PAGE_ จากทั้งหมด _PAGES_ หน้า",
+        "paginate": {
+          "previous": "หน้าก่อนหน้า",
+          "next": "หน้าถัดไป"
+        }
+      },
+      pageLength: 10,
+      dom:  "<'row be-datatable-body'<'col-sm-12'tr>>" +
+            "<'row be-datatable-footer'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+
+  $(function () {
+    $('#activities_enddate').datetimepicker();
+ });
+});
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      datasets: [{
+        label: 'Statistics',
+        data: [460, 458, 330, 502, 430, 610, 488],
+        borderWidth: 2,
+        backgroundColor: 'rgb(87,75,144)',
+        borderColor: 'rgb(87,75,144)',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#ffffff',
+        pointRadius: 4
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 150
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: false
+          }
+        }]
+      },
+    }
+  });
+
+  function RecCheck() {
+    document.form_search.sdate.value = "";
+    document.form_search.edate.value = "";
+    document.form_search.req_no.value = "";
+    document.form_search.dept_name.value = "";
+    document.form_search.emp_name.value = "";
+    document.form_search.emp_name_1.value = "";
+    document.getElementById("checkbox0").checked = false;
+    document.getElementById("checkbox1").checked = false;
+    // document.form_search.req_status[].checked  = false;
+  }
+
+  function check() {
+      
+      if (document.form_search.activities_name.value == "") {
+
+        Swal({
+            type: 'error',
+            title: 'กรุณา ชื่อกิจกรรม',
+            footer: ''
+            })
+        document.form_search.activities_name.focus();
+        return false;
+      }  else if (document.form_search.activities_location.value == "") {
+
+       Swal({
+            type: 'error',
+            title: 'สถานที่กิจกรรม',
+            footer: ''
+            })
+        document.form_search.activities_location.focus();
+        return false;
+      }  else if (document.form_search.activities_aspect.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา หน้าที่รับผิดชอบ',
+     footer: ''
+     })
+ document.form_search.activities_aspect.focus();
+ return false;
+      } else if (document.form_search.activities_timeday.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา ช่วงเวลาเช้า',
+     footer: ''
+     })
+ document.form_search.activities_timeday.focus();
+ return false;
+
+} else if (document.form_search.activities_detill.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา รายละเอียดกิจกรรม',
+     footer: ''
+     })
+ document.form_search.activities_detill.focus();
+ return false;
+} else if (document.form_search.activities_enddate.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา วันที่สิ้นสุดกิจกรรรม',
+     footer: ''
+     })
+ document.form_search.activities_enddate.focus();
+ return false;
+} else if (document.form_search.activities_year.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา ปีการศึกษา',
+     footer: ''
+     })
+ document.form_search.activities_year.focus();
+ return false;
+} else if (document.form_search.activities_trem.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา เทอมการศึกษา',
+     footer: ''
+     })
+ document.form_search.activities_trem.focus();
+ return false;
+} else if (document.form_search.activities_hour.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา ชั่วโมงที่ได้รับ',
+     footer: ''
+     })
+ document.form_search.activities_hour.focus();
+ return false;
+} else if (document.form_search.activities_total.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก ผู้คนที่รับได้ทั้งหมด',
+     footer: ''
+     })
+ document.form_search.activities_total.focus();
+ return false;
+} else if (document.form_search.activities_timenint.value == "") {
+
+Swal({
+     type: 'error',
+     title: 'กรุณา กรอก ช่วงเวลาเย็น',
+     footer: ''
+     })
+ document.form_search.activities_timenint.focus();
+ return false;
+} 
+  alert("สำเร็จ");
+
+    }
+  </script>
+</body>
+</html>

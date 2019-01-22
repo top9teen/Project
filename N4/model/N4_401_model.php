@@ -1,5 +1,5 @@
 <?php
-class N1_101_Model
+class N4_401_model
 {
 
     // database connection and table name
@@ -37,6 +37,7 @@ class N1_101_Model
     public $sdate;
     public $edate;
     public $req_status_list;
+    public $emp_name_1;
     
     // constructor with $db as database connection
     public function __construct($db)
@@ -48,10 +49,13 @@ class N1_101_Model
     public function getAll()
     {
         $query = "SELECT 
-                    *
-                    FROM tb_activities 
-                    WHERE  activities_max = 'N'
-                    ORDER BY  activities_enddate DESC";
+                    jo.*,CONCAT(us.user_name,' ',user_lastname) AS name ,br.*,ac.*
+                    FROM tb_joinactivity AS jo
+                    LEFT JOIN tb_user AS us ON us.id = jo.jo_userid
+                    LEFT JOIN tb_branch AS br ON br.user_majer = us.user_majer
+                    LEFT JOIN tb_activities AS ac ON ac.id = jo.jo_activties
+                    WHERE  ac.activities_status = '1' AND jo.jo_statusadmin = '0'
+                    ORDER BY  ac.activities_enddate DESC";
 // 0 เปิด , 1 ปิด
 
         $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -64,35 +68,42 @@ class N1_101_Model
         }
     }
 
-
     public function search()
     {
         $query = "SELECT 
-        * 
-        FROM tb_activities WHERE 1 = 1";
+        jo.*,CONCAT(us.user_name,' ',user_lastname) AS name ,br.*,ac.*
+        FROM tb_joinactivity AS jo
+        LEFT JOIN tb_user AS us ON us.id = jo.jo_userid
+        LEFT JOIN tb_branch AS br ON br.user_majer = us.user_majer
+        LEFT JOIN tb_activities AS ac ON ac.id = jo.jo_activties
+        WHERE  ac.activities_status = '1'";
 
         if (isset($this->req_no)) {
-            $query .= " AND activities_name like '%" . $this->req_no . "%' ";
+            $query .= " AND ac.activities_name like '%" . $this->req_no . "%' ";
         }
 
         if (isset($this->emp_name)) {
-            $query .= " AND activities_year like '%" . $this->emp_name . "%' ";
+            $query .= " AND br.br_name like '%" . $this->emp_name . "%' ";
+        }
+
+        if (isset($this->emp_name_1)) {
+            $query .= "  AND CONCAT(us.user_name,' ',us.user_lastname) like '%" . $this->emp_name_1 . "%' ";
         }
 
         if (isset($this->dept_name)) {
-            $query .= " AND activities_trem like '%" . $this->dept_name . "%' ";
+            $query .= " AND ac.activities_trem like '%" . $this->dept_name . "%' ";
         }
 
         if (!empty($this->sdate) && !empty($this->edate)) {
-            $query .= " AND activities_enddate between '" . $this->sdate . "' AND '" . $this->edate . "'";
+            $query .= " AND ac.activities_enddate between '" . $this->sdate . "' AND '" . $this->edate . "'";
         }
 
         if (isset($this->req_status_list)) {
             $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';
-            $query .= " AND  activities_max IN (" . $array . ") ";
+            $query .= " AND  jo.jo_statusadmin IN (" . $array . ") ";
         }
 
-        $query .= " ORDER BY activities_enddate DESC";
+        $query .= " ORDER BY ac.activities_enddate DESC";
         $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     
         try {
@@ -147,5 +158,67 @@ class N1_101_Model
             die($ex->getMessage());
         }
     }
-// end class
+
+    public function value()
+    {
+        $query = "SELECT 
+                    jo.*, CONCAT(us.pre_name,' ',us.user_name,' ',us.user_lastname) AS name,
+                    br.br_name AS br_name
+                    FROM tb_joinactivity AS jo 
+                    LEFT JOIN tb_user AS us ON us.id = jo.jo_userid
+                    LEFT JOIN tb_branch AS br ON br.user_majer = us.user_majer
+                    WHERE  jo.jo_statusadmin = '0' AND jo.jo_activties =:id
+                    ORDER BY  jo.jo_crdate ASC";
+// 0 เปิด , 1 ปิด
+
+        $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+            $stmt->execute();
+            return $stmt;
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+   
+    public function updateadmin()
+    {
+        
+        $query = "UPDATE tb_joinactivity SET jo_statusadmin = 'T' WHERE 1 = 1 ";             
+
+        if (isset($this->req_status_list)) {
+            $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';
+            $query .= " AND  id IN (" . $array . ") ";
+        }
+        $stmt = $this->conn->prepare($query);
+
+        try {
+            if (isset($this->req_status_list)) {
+                $stmt->execute($this->req_status_list);
+            } else {
+                $stmt->execute();
+            }
+            return $stmt;
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+
+        
+    public function updateact()
+    {    
+        $query = "UPDATE tb_activities SET activities_adminstatus = 'A' WHERE id = :id ";           
+
+        $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+            $stmt->execute();
+            return $stmt;
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+// end class  tb_activities
 }

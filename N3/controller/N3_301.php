@@ -5,13 +5,13 @@ require '../../session.php';
 require_once '../../common.php';
 require_once '../../lib/template.php';
 require_once '../../config/database.php';
-require_once '../model/make_activitty.php';
+require_once '../model/N3_301_Model.php';
 include '../../utils/base_function.php';
 
 //prepare template
 $template = new template();
 $template->set_filenames(array(
-    'body' => '../view/make_activitty.html')
+    'body' => '../view/N3_301.html')
 );
 
 //get database connection
@@ -20,7 +20,7 @@ $db = $database->getConnection();
 
 
 // prepare product object
-$model = new make_activitty($db);
+$model = new N3_301_Model($db);
 
     $model->id = $_SESSION["id"];
 
@@ -32,30 +32,24 @@ if (isset($_POST["search"])) {
     $model->sdate = strToDateSdate(isNotEmpty($_POST["sdate"]));
     $model->edate = strToDateEdate(isNotEmpty($_POST["edate"]));
     $model->req_status_list = $_POST["req_status"];
-
-
     $stmt = $model->search();
-    
+
     $filter_req_status = implode(",", $model->req_status_list);
 
     if (is_array($model->req_status_list)) {
         foreach ($model->req_status_list as $item) {
-            if ($item == 0) {
+            if ($item == "N") {
                 $template->assign_var("checked_0", "checked=''");
-            } elseif ($item == 1) {
+            } elseif ($item == "A") {
                 $template->assign_var("checked_1", "checked=''");
-            } elseif ($item == 2) {
-                $template->assign_var("checked_2", "checked=''");
-            } elseif ($item == 3) {
-                $template->assign_var("checked_3", "checked=''");
             }
         }
     }
 
     $rpt_url = RPT_SERVER_ADDRESS;
-    $rpt_url = str_replace("{reportUnit}", "/reports/project/page1", $rpt_url);
+    $rpt_url = str_replace("{reportUnit}", "/reports/project/page4_2", $rpt_url);
     $rpt_url = str_replace("{req_no}", isNotEmpty($_POST["req_no"]), $rpt_url);
-    $rpt_url = str_replace("{id}", isNotEmpty($_SESSION["id"]), $rpt_url);
+    $rpt_url = str_replace("{id}", "", $rpt_url);
     $rpt_url = str_replace("{sdate}", str_replace("-", "/", isNotEmpty($_POST["sdate"])), $rpt_url);
     $rpt_url = str_replace("{edate}", str_replace("-", "/", isNotEmpty($_POST["edate"])), $rpt_url);
     $rpt_url = str_replace("{emp_name}", isNotEmpty($_POST["emp_name"]), $rpt_url);
@@ -73,17 +67,17 @@ if (isset($_POST["search"])) {
 } else {
 
     $rpt_url = RPT_SERVER_ADDRESS;
-    $rpt_url = str_replace("{reportUnit}", "/reports/project/page1", $rpt_url);
+    $rpt_url = str_replace("{reportUnit}", "/reports/project/page4_2", $rpt_url);
     $rpt_url = str_replace("{req_no}", "",$rpt_url);
     $rpt_url = str_replace("{sdate}", "",$rpt_url);
     $rpt_url = str_replace("{id}", isNotEmpty($_SESSION["id"]), $rpt_url);
     $rpt_url = str_replace("{edate}", "",$rpt_url);
     $rpt_url = str_replace("{emp_name}", "",$rpt_url);
     $rpt_url = str_replace("{dept_name}", "", $rpt_url);
-    $rpt_url = str_replace("{req_status}", "0" ,$rpt_url);
+    $rpt_url = str_replace("{req_status}", "N" ,$rpt_url);
     
     $template->assign_var("rpt_url", $rpt_url);
-    $template->assign_var("checked_0", "checked=''");
+    $template->assign_var("checked_0", "checked='N'");
     $stmt = $model->getAll();
 }
 
@@ -95,7 +89,7 @@ if ($num > 0) {
     $count = 1;
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $row["no"] = $count;
-        $row["adminstatus"] = reformatStatusResign($row["adminstatus"]);
+        $row["activities_adminstatus"] = reformatStatusBenefits($row["activities_adminstatus"]);
         $row["activities_enddate"] = date("Y-m-d H:i", strtotime($row["activities_enddate"]));
         $template->assign_block_vars('request', $row);
         unset($rows);

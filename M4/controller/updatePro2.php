@@ -35,6 +35,7 @@ $model = new Pro_activties_Model($db);
     $model->user_moo       = $_POST["user_moo"];
     $file_path             = $_POST["file_path"];
     $model->id             = $_SESSION["id"];
+    $model->user_date      =  Date('Y-m-d H:i:s');
     $model->user_img       = $file_path;
     
     if (isset($_FILES['file']) && !empty($_FILES["file"])) {

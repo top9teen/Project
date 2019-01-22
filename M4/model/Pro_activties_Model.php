@@ -19,6 +19,7 @@ class Pro_activties_Model
     public $user_tel;
     public $user_id;
     public $branch;
+    public $user_date;
     public $id;
 
     // constructor with $db as database connection
@@ -75,7 +76,7 @@ class Pro_activties_Model
                 // query to insert record
                 $query = "UPDATE tb_user  SET pre_name = ?, user_name = ?, user_lastname = ?,
                 user_id = ? ,user_majer = ?, user_year = ?, user_moo = ?, user_tel = ?,
-                user_email = ?, user_password = ?, user_status = '1', user_img = ?  WHERE id = ? ";
+                user_email = ?, user_password = ?, user_status = '1', user_img = ?,user_date = ?  WHERE id = ? ";
     
                 // prepare query
                 $stmt = $this->conn->prepare($query);
@@ -92,7 +93,8 @@ class Pro_activties_Model
                 $stmt->bindParam(9, $this->user_email);
                 $stmt->bindParam(10, $this->user_password);
                 $stmt->bindParam(11, $this->user_img);
-                $stmt->bindParam(12, $this->id);
+                $stmt->bindParam(12, $this->user_date);
+                $stmt->bindParam(13, $this->id);
 
                 // execute query
                 if ($stmt->execute()) {

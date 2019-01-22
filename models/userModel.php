@@ -23,6 +23,8 @@ class userModel
     public $userpassword;
     public $img;
 
+    public $user_date;
+
     public $user_password;
     public $user_lastname;
     public $user_email;
@@ -72,8 +74,8 @@ class userModel
     // insert  new user
     public function insert()
     {
-            // query to insert record
-            $query = "INSERT INTO tb_user (pre_name,user_name,user_lastname,user_id,user_majer,user_year,user_moo,user_tel,user_email,user_password,user_status,user_img) VALUES(?,?,?,?,?,?,?,?,?,?,'1',?)";
+      // query to insert record
+            $query = "INSERT INTO tb_user (pre_name,user_name,user_lastname,user_id,user_majer,user_year,user_moo,user_tel,user_email,user_password,user_status,user_img,user_date) VALUES(?,?,?,?,?,?,?,?,?,?,'1',?,?)";
 
             // prepare query
            $stmt = $this->conn->prepare($query);    
@@ -89,11 +91,13 @@ class userModel
             $stmt->bindParam(9, $this->useremail);
             $stmt->bindParam(10, $this->userpassword);
             $stmt->bindParam(11, $this->img);
+            $stmt->bindParam(12, $this->user_date);
             // execute query
             if($stmt->execute()){
-                return true;
+               
+                return $stmt;
             }
-            return false;
+            return $stmt;
     }
 
     public function getAll()

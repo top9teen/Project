@@ -135,10 +135,6 @@ $date2 = Date('Y');
 
 $formateDate = $date2+543;
 
-array_push($stack, "apple", "raspberry");
-
-
-
 $year = array();
 
 $x=0;
@@ -157,7 +153,6 @@ foreach ($year as $key => $row) {
     if ($_POST["year"] == $row) {
         $temp2["selected"] = "selected=\"selected\"";
     }
-    echo($_POST["year"]);
     $template->assign_block_vars('year', $temp2);
 }
 
@@ -177,7 +172,6 @@ foreach ($Semester as $key => $row) {
     if ($_POST["Semester"] == $key) {
         $temp["selected"] = "selected=\"selected\"";
     }
-    echo($_POST["Semester"]);
     $template->assign_block_vars('Semester', $temp);
 }
 $template->assign_vars($data);

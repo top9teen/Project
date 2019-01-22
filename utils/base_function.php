@@ -51,14 +51,12 @@ function changeFormatDBtoDate($date)
 
 function reformatStatus($status)
 {
-    if ($status == 0) {
-        return "รอพิจารณา";
-    } else if ($status == 1) {
-        return "อนุมัติ";
-    } else if ($status == 2) {
-        return "ไม่อนุมัติ";
-    } else if ($status == 3) {
-        return "ส่งออกข้อมูล";
+    if ($status == "0") {
+        return "รอการอนุมัติ";
+    } else if ($status == "T") {
+        return "ผ่านกิจกรรม";
+    } else {
+        return "รอการอนุมัติ";
     }
 }
 
@@ -76,9 +74,9 @@ function reformatStatusResign($status)
 function reformatStatusM9($status)
 {
     if ($status == "A") {
-        return '<span style="color: green;">เปิดใช้งาน</span>';
-    } else if ($status == "I") {
-        return '<span style="color: red;">ปิดการใช้งาน</span>';
+        return 'คนครบ';
+    } else if ($status == "N") {
+        return 'คนยังไม่ครบ';
     } else{
         return "";
     }
@@ -95,14 +93,12 @@ function reformatStatuStake_moro($status)
 
 function reformatStatusBenefits($status)
 {
-    if ($status == 0) {
-        return "รอตรวจสอบ";
-    } else if ($status == 1) {
-        return "ตรวจสอบแล้ว";
-    } else if ($status == 2) {
-        return "เอกสารไม่ครบ";
-    } else if ($status == 3) {
-        return "เรียกเงินคืน";
+    if ($status == "A") {
+        return 'ตรวจสอบแล้ว';
+    } else if ($status == "N") {
+        return 'ยังไม่ได้ตรวจสอบ';
+    } else{
+        return "";
     }
 }
 function reformatStatusMedical($status)
