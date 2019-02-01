@@ -42,9 +42,7 @@ if (isset($_POST["search"])) {
 $rpt_url = RPT_SERVER_ADDRESS;
 $rpt_url = str_replace("{reportUnit}", "/reports/project/page4_2", $rpt_url);
 $rpt_url = str_replace("{req_no}", "",$rpt_url);
-$rpt_url = str_replace("{sdate}", "",$rpt_url);
 $rpt_url = str_replace("{id}", isNotEmpty($_SESSION["id"]), $rpt_url);
-$rpt_url = str_replace("{edate}", "",$rpt_url);
 $rpt_url = str_replace("{emp_name}", "",$rpt_url);
 $rpt_url = str_replace("{dept_name}", "", $rpt_url);
 $rpt_url = str_replace("{req_status}", "N" ,$rpt_url);
@@ -59,7 +57,7 @@ if ($num > 0) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $row["no"] = $count;
         $row["activities_adminstatus"] = reformatStatusBenefits($row["activities_adminstatus"]);
-        $row["activities_enddate"] = date("Y-m-d H:i", strtotime($row["activities_enddate"]));
+        $row["activities_enddate"] = date("d-m-Y", strtotime($row["activities_enddate"]));
         $template->assign_block_vars('request', $row);
         unset($rows);
         $count++;

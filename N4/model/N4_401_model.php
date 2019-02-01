@@ -94,10 +94,6 @@ class N4_401_model
             $query .= " AND ac.activities_trem like '%" . $this->dept_name . "%' ";
         }
 
-        if (!empty($this->sdate) && !empty($this->edate)) {
-            $query .= " AND ac.activities_enddate between '" . $this->sdate . "' AND '" . $this->edate . "'";
-        }
-
         if (isset($this->req_status_list)) {
             $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';
             $query .= " AND  jo.jo_statusadmin IN (" . $array . ") ";

@@ -82,9 +82,6 @@ class N3_301_Model
             $query .= " AND activities_trem like '%" . $this->dept_name . "%' ";
         }
 
-        if (!empty($this->sdate) && !empty($this->edate)) {
-            $query .= " AND activities_enddate between '" . $this->sdate . "' AND '" . $this->edate . "'";
-        }
 
         if (isset($this->req_status_list)) {
             $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';

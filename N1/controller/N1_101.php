@@ -29,8 +29,6 @@ if (isset($_POST["search"])) {
     $model->req_no = isNotEmpty($_POST["req_no"]);
     $model->dept_name = isNotEmpty($_POST["dept_name"]);
     $model->emp_name = isNotEmpty($_POST["emp_name"]);
-    $model->sdate = strToDateSdate(isNotEmpty($_POST["sdate"]));
-    $model->edate = strToDateEdate(isNotEmpty($_POST["edate"]));
     $model->req_status_list = $_POST["req_status"];
     $stmt = $model->search();
 
@@ -50,8 +48,6 @@ if (isset($_POST["search"])) {
     $rpt_url = str_replace("{reportUnit}", "/reports/project/page4", $rpt_url);
     $rpt_url = str_replace("{req_no}", isNotEmpty($_POST["req_no"]), $rpt_url);
     $rpt_url = str_replace("{id}", "", $rpt_url);
-    $rpt_url = str_replace("{sdate}", str_replace("-", "/", isNotEmpty($_POST["sdate"])), $rpt_url);
-    $rpt_url = str_replace("{edate}", str_replace("-", "/", isNotEmpty($_POST["edate"])), $rpt_url);
     $rpt_url = str_replace("{emp_name}", isNotEmpty($_POST["emp_name"]), $rpt_url);
     $rpt_url = str_replace("{dept_name}", isNotEmpty($_POST["dept_name"]), $rpt_url);
     $rpt_url = str_replace("{req_status}", $filter_req_status, $rpt_url);
@@ -59,8 +55,6 @@ if (isset($_POST["search"])) {
     $template->assign_var("dept_name", isNotEmpty($_POST["dept_name"]));
     $template->assign_var("req_no", isNotEmpty($_POST["req_no"]));
     $template->assign_var("emp_name", isNotEmpty($_POST["emp_name"]));
-    $template->assign_var("sdate", isNotEmpty($_POST["sdate"]));
-    $template->assign_var("edate", isNotEmpty($_POST["edate"]));
 
     $template->assign_var("rpt_url", $rpt_url);
 
@@ -69,9 +63,7 @@ if (isset($_POST["search"])) {
     $rpt_url = RPT_SERVER_ADDRESS;
     $rpt_url = str_replace("{reportUnit}", "/reports/project/page4", $rpt_url);
     $rpt_url = str_replace("{req_no}", "",$rpt_url);
-    $rpt_url = str_replace("{sdate}", "",$rpt_url);
     $rpt_url = str_replace("{id}", isNotEmpty($_SESSION["id"]), $rpt_url);
-    $rpt_url = str_replace("{edate}", "",$rpt_url);
     $rpt_url = str_replace("{emp_name}", "",$rpt_url);
     $rpt_url = str_replace("{dept_name}", "", $rpt_url);
     $rpt_url = str_replace("{req_status}", "N" ,$rpt_url);
@@ -90,7 +82,7 @@ if ($num > 0) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $row["no"] = $count;
         $row["activities_max"] = reformatStatusM9($row["activities_max"]);
-        $row["activities_enddate"] = date("Y-m-d H:i", strtotime($row["activities_enddate"]));
+        $row["activities_enddate"] = date("d-m-Y", strtotime($row["activities_enddate"]));
         $template->assign_block_vars('request', $row);
         unset($rows);
         $count++;

@@ -36,8 +36,8 @@ if ($num > 0) {
         } else {
 
           $row["no"] = $count;
-          $row["activities_createdate"] = date("Y-m-d H:i", strtotime($row["activities_createdate"]));
-          $row["activities_enddate"] = date("Y-m-d H:i", strtotime($row["activities_enddate"]));
+          $row["activities_createdate"] = date("d-m-Y", strtotime($row["activities_createdate"]));
+          $row["activities_enddate"] = date("d-m-Y", strtotime($row["activities_enddate"]));
           $row["statusTallo"] = reformatStatusMedical($row["status"]);
           $template->assign_block_vars('request', $row);
           unset($rows);

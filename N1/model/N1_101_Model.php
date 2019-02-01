@@ -83,10 +83,6 @@ class N1_101_Model
             $query .= " AND activities_trem like '%" . $this->dept_name . "%' ";
         }
 
-        if (!empty($this->sdate) && !empty($this->edate)) {
-            $query .= " AND activities_enddate between '" . $this->sdate . "' AND '" . $this->edate . "'";
-        }
-
         if (isset($this->req_status_list)) {
             $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';
             $query .= " AND  activities_max IN (" . $array . ") ";
@@ -131,8 +127,8 @@ class N1_101_Model
                 $this->activities_detill      = $row['activities_detill'];
                 $this->activities_total       = $row['activities_total'];
                 $this->activities_name        = $row['activities_name'];
-                $this->activities_timeday        = $row['activities_timeday'];
-                $this->activities_timenint        = $row['activities_timenint'];
+                $this->activities_timeday     = $row['activities_timeday'];
+                $this->activities_timenint    = $row['activities_timenint'];
                 $this->activities_year        = $row['activities_year'];
                 $this->activities_trem        = $row['activities_trem'];
                 $this->activities_hour        = $row['activities_hour'];

@@ -42,8 +42,7 @@ if (isset($_POST["search"])) {
     $rpt_url = str_replace("{reportUnit}", "/reports/project/page3", $rpt_url);
     $rpt_url = str_replace("{req_no}", isNotEmpty($_POST["req_no"]), $rpt_url);
     $rpt_url = str_replace("{id}", isNotEmpty($_SESSION["id"]), $rpt_url);
-    $rpt_url = str_replace("{sdate}", str_replace("-", "/", isNotEmpty($_POST["sdate"])), $rpt_url);
-    $rpt_url = str_replace("{edate}", str_replace("-", "/", isNotEmpty($_POST["edate"])), $rpt_url);
+
     $rpt_url = str_replace("{emp_name}", isNotEmpty($_POST["Semester"]), $rpt_url);
     $rpt_url = str_replace("{dept_name}", isNotEmpty($_POST["year"]), $rpt_url);
     $rpt_url = str_replace("{req_status}","", $rpt_url);
@@ -51,9 +50,6 @@ if (isset($_POST["search"])) {
     $template->assign_var("dept_name", isNotEmpty($_POST["dept_name"]));
     $template->assign_var("req_no", isNotEmpty($_POST["req_no"]));
     $template->assign_var("emp_name", isNotEmpty($_POST["emp_name"]));
-    $template->assign_var("sdate", isNotEmpty($_POST["sdate"]));
-    $template->assign_var("edate", isNotEmpty($_POST["edate"]));
-
    
     $num = $stmt->rowCount();
 
@@ -86,20 +82,21 @@ if (isset($_POST["search"])) {
         }
 
 
-$sum = $Hour - $Total;
-$response_data["Total"]         = $Total; 
-$response_data["Hour"]          = $Hour;
-$response_data["Sum"]           = $Hour -$Total;
-$response_data["Pername"]       = $Pername;
-$response_data["Fname"]         = $Fname;
-$response_data["lname"]         = $lname;
-$response_data["Idcard"]        = $Idcard;
-$response_data["Majer"]         = $Majer;
-$response_data["user_year"]     = $user_year;
-$response_data["user_moo"]      = $user_moo;
-$response_data["trem"]          = $trem;
-$response_data["display"] = "";
-$template->assign_vars($response_data);
+    $sum = $Hour - $Total;
+    $response_data["Total"]         = $Total; 
+    $response_data["Hour"]          = $Hour;
+    $response_data["Sum"]           = $Hour -$Total;
+    $response_data["Pername"]       = $Pername;
+    $response_data["Fname"]         = $Fname;
+    $response_data["lname"]         = $lname;
+    $response_data["Idcard"]        = $Idcard;
+    $response_data["Majer"]         = $Majer;
+    $response_data["user_year"]     = $user_year;
+    $response_data["user_moo"]      = $user_moo;
+    $response_data["trem"]          = $trem;
+    $response_data["display"] = "";
+
+    $template->assign_vars($response_data);
         if($sum = 0){
 
     $template->assign_var("rpt_url", $rpt_url);
@@ -160,6 +157,7 @@ $Semester = array(
     "0"  => "เลือก",
     "1" => "1",
     "2" => "2",
+    "3" => "3",
 );
 
 foreach ($Semester as $key => $row) {

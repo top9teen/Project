@@ -64,10 +64,6 @@ class N2_201_Model
             $query .= " AND  br.br_name like '%" . $this->dept_name . "%' ";
         }
 
-        if (!empty($this->sdate) && !empty($this->edate)) {
-            $query .= " AND us.user_date between '" . $this->sdate . "' AND '" . $this->edate . "'";
-        }
-
         if (isset($this->req_status_list)) {
             $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';
             $query .= " AND  us.user_year IN (" . $array . ") ";

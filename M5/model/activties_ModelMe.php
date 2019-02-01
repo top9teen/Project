@@ -24,6 +24,9 @@ class activties_ModelMe
     public $activities_max;
     public $id;
 
+    public $jo_userid;
+    public $jo_activties;
+    public $activities_join2;
     // constructor with $db as database connection
     public function __construct($db)
     {
@@ -36,8 +39,8 @@ class activties_ModelMe
         $query = "SELECT 
                     ac.*,
                     jo.jo_status AS status
-                    FROM tb_activities AS ac  
-                    LEFT JOIN tb_joinactivity AS jo ON ac.id = jo.jo_activties
+                    FROM tb_activities  ac  
+                    LEFT JOIN tb_joinactivity jo ON ac.id = jo.jo_activties
                     WHERE jo.jo_userid = :id AND jo.jo_status = '1'
                     ORDER BY ac.activities_hour DESC, 
                     ac.activities_join DESC";
@@ -75,8 +78,8 @@ class activties_ModelMe
                 $this->activities_detill      = $row['activities_detill'];
                 $this->activities_total       = $row['activities_total'];
                 $this->activities_name        = $row['activities_name'];
-                $this->activities_timeday        = $row['activities_timeday'];
-                $this->activities_timenint        = $row['activities_timenint'];
+                $this->activities_timeday     = $row['activities_timeday'];
+                $this->activities_timenint    = $row['activities_timenint'];
                 $this->activities_year        = $row['activities_year'];
                 $this->activities_trem        = $row['activities_trem'];
                 $this->activities_hour        = $row['activities_hour'];
@@ -91,4 +94,37 @@ class activties_ModelMe
             die($ex->getMessage());
         }
     }
+
+       
+    public function DELETE()
+    {
+        $query = "DELETE FROM tb_joinactivity  WHERE jo_activties = :jo_activties AND jo_userid = :jo_userid";             
+       
+        $stmt = $this->conn->prepare($query);
+       
+        $stmt->bindParam(":jo_activties", $this->jo_activties);
+        $stmt->bindParam(":jo_userid", $this->jo_userid);
+
+        // execute the query
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function update_max()
+    {
+        $query = "UPDATE tb_activities SET activities_max = 'N',activities_join = :activities_join WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":activities_join", $this->activities_join2);
+        $stmt->bindParam(":id", $this->id);
+    
+        // execute the query
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
+    }
+    
 }

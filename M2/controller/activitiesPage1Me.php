@@ -5,20 +5,20 @@ require '../../session.php';
 require_once '../../common.php';
 require_once '../../lib/template.php';
 require_once '../../config/database.php';
-require_once '../model/N3_301_Model.php';
+require_once '../model/make_activitty.php';
 include '../../utils/base_function.php';
 
 //prepare template
 $template = new template();
 $template->set_filenames(array(
-    'body' => '../view/activitiesPage1.html')
+    'body' => '../view/activitiesPage1Me.html')
 );
 
 //get database connection
 $database = new Database();
 $db       = $database->getConnection();
 
-$model             = new N3_301_Model($db);
+$model             = new make_activitty($db);
 $model->id         = isset($_GET['id']) ? $_GET['id'] : $http_response->print_error(400);
 
 $model->OneAll();
@@ -41,34 +41,8 @@ $response_data["activities_join"] = $model->activities_join;
 $response_data["activities_max"] = $model->activities_max;
 $response_data["id"] = $model->id;
 
+
 $template->assign_vars($response_data);
-
-
-
-$stmt = $model->value();
-
-$num = $stmt->rowCount();
-if ($num > 0) {
-    $response_data2 = array();
-    $count = 1;
-    
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $row["no"] = $count;
-        $row["joid"] = $row["joid"];
-        $row["jo_crdate"] = date("d-m-Y", strtotime($row["jo_crdate"]));
-        $template->assign_block_vars('request', $row);
-
-        $response_data2["checkbox"] .= "document.getElementById(\"checkbox{$row["id"]}\").checked = true;";
-        $response_data2["checkbox"].="\n";
-
-        $response_data2["checkboxed"] .= "document.getElementById(\"checkbox{$row["id"]}\").checked = false;";
-        $response_data2["checkboxed"].="\n";
-        unset($rows);
-        $count++;
-     
-    }
-}
-$template->assign_vars($response_data2);
 
 $data = array(
     "username" => $_SESSION["username"],

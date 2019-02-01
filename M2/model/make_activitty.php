@@ -100,10 +100,6 @@ class make_activitty
             $query .= " AND ac.activities_trem like '%" . $this->dept_name . "%' ";
         }
 
-        if (!empty($this->sdate) && !empty($this->edate)) {
-            $query .= " AND ac.activities_enddate between '" . $this->sdate . "' AND '" . $this->edate . "'";
-        }
-
         if (isset($this->req_status_list)) {
             $array = str_repeat('?,', count($this->req_status_list) - 1) . '?';
             $query .= " AND  jo.jo_statusadmin IN (" . $array . ") ";
@@ -120,6 +116,45 @@ class make_activitty
             }
 
             return $stmt;
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+    public function OneAll()
+    {
+        $query = "SELECT * FROM tb_activities WHERE id = :id ";
+
+        $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+            $stmt->execute();
+            $num = $stmt->rowCount();
+
+            if ($num == 1) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // set values to object properties
+                $this->activities_createdate  = $row['activities_createdate'];
+                $this->activities_location    = $row['activities_location'];
+                $this->activities_enddate     = $row['activities_enddate'];
+                $this->activities_status      = $row['activities_status'];
+                $this->activities_aspect      = $row['activities_aspect'];
+                $this->activities_detill      = $row['activities_detill'];
+                $this->activities_total       = $row['activities_total'];
+                $this->activities_name        = $row['activities_name'];
+                $this->activities_timeday     = $row['activities_timeday'];
+                $this->activities_timenint    = $row['activities_timenint'];
+                $this->activities_year        = $row['activities_year'];
+                $this->activities_trem        = $row['activities_trem'];
+                $this->activities_hour        = $row['activities_hour'];
+                $this->activities_join        = $row['activities_join'];
+                $this->activities_max         = $row['activities_max'];
+                $this->id                     = $row['id'];
+
+            } else {
+                return $stmt;
+            }
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }

@@ -29,21 +29,18 @@ if ($num > 0) {
       $count = 1;
       $max = 1;
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        if($row["status"] == null || $row["status"] == "") {
             if ($max<=3) {
                 $row["no"] = reformatCertificate($max);
               }else{
                 $row["no"] = "<td><span style=\"margin-left: 35%;\"> $count </span></td>";
               }
-              $row["activities_createdate"] = date("Y-m-d H:i", strtotime($row["activities_createdate"]));
-              $row["activities_enddate"] = date("Y-m-d H:i", strtotime($row["activities_enddate"]));
-    
-              $template->assign_block_vars('request', $row);
+              $row["activities_createdate"] = date("d-m-Y", strtotime($row["activities_createdate"]));
+              $row["activities_enddate"] = date("d-m-Y", strtotime($row["activities_enddate"]));
+
               unset($rows);
+              $template->assign_block_vars('request', $row);
               $count++;
-              $max++;
-        }
-        
+              $max++; 
       }
 }
 

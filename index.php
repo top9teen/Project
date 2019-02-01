@@ -26,6 +26,7 @@ require_once 'models/activities.php';
              if ($datenew > $row["activities_enddate"]) {
                  $activities->id = $row["id"];
                  $activities->update();
+                 $activities->update_joinactivity();
              }   
      }
  }

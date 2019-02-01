@@ -30,6 +30,7 @@ class activties_Model
     public $jo_crdate;
     public $jo_trem;
     public $jo_year;
+    public $check;
 
     // constructor with $db as database connection
     public function __construct($db)
@@ -41,13 +42,11 @@ class activties_Model
     public function getAll()
     {
         $query = "SELECT 
-                    ac.*,
-                    jo.jo_status AS status
-                    FROM tb_activities AS ac  
-                    LEFT JOIN tb_joinactivity AS jo ON ac.id = jo.jo_activties
-                    WHERE ac.activities_status = '0' AND ac.activities_max ='N' 
-                    ORDER BY ac.activities_hour DESC, 
-                            ac.activities_join DESC";
+        ac.*
+        FROM tb_activities AS ac  
+        WHERE ac.activities_status = '0' AND ac.activities_max ='N'  
+        ORDER BY ac.activities_hour DESC,  
+                ac.activities_join DESC";
 
         $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         try {
@@ -163,6 +162,33 @@ class activties_Model
         }
 
         return false;
+    }
+
+
+    public function check()
+    {
+        $query = "SELECT id FROM tb_joinactivity WHERE jo_activties = :jo_activties  AND jo_userid = :jo_userid";
+
+        $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(":jo_activties", $this->jo_activties2);
+        $stmt->bindParam(":jo_userid", $this->jo_userid);
+
+        try {
+            $stmt->execute();
+            $num = $stmt->rowCount();
+
+            if ($num == 1) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // set values to object properties
+                $this->check  = $row['id'];
+
+            } else {
+                return $stmt;
+            }
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
     }
 // end class
 }

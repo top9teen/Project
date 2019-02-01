@@ -20,7 +20,7 @@ class activities
 
     public function getAll()
     {
-        $query = "SELECT * FROM tb_activities WHERE activities_status = '0' AND activities_max ='N' ";
+        $query = "SELECT * FROM tb_activities WHERE activities_status = '0' ";
 
         $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         try {
@@ -34,6 +34,22 @@ class activities
     public function update()
     {
         $query = "UPDATE tb_activities SET activities_status = '1' WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+             
+        // bind values
+        $stmt->bindParam(1, $this->id);
+
+        // execute the query
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    public function update_joinactivity()
+    {
+        $query = "UPDATE tb_joinactivity SET jo_status = '0' WHERE jo_activties = ?";
         $stmt = $this->conn->prepare($query);
              
         // bind values
