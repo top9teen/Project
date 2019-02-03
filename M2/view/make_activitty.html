@@ -138,7 +138,7 @@
                                         <div>
                                           <div class="custom-controls-stacked">
                                             <label class="custom-control custom-checkbox">
-                                              <input name="req_status[]" value="1" id="checkbox1" type="checkbox" {checked_1} class="custom-control-input">
+                                              <input name="req_status[]" value="T" id="checkbox1" type="checkbox" {checked_1} class="custom-control-input">
                                               <span class="custom-control-label">ผ่านกิจกรรม</span>
                                             </label>
                                           </div>
@@ -146,7 +146,7 @@
                                         <div>
                                             <div class="custom-controls-stacked">
                                               <label class="custom-control custom-checkbox">
-                                                <input name="req_status[]" value="2" id="checkbox2" type="checkbox" {checked_2} class="custom-control-input">
+                                                <input name="req_status[]" value="F" id="checkbox2" type="checkbox" {checked_2} class="custom-control-input">
                                                 <span class="custom-control-label">ไม่ผ่านกิจกรรม</span>
                                               </label>
                                             </div>
@@ -285,8 +285,6 @@ $(document).ready(function () {
   });
 
   function RecCheck() {
-    document.form_search.sdate.value = "";
-    document.form_search.edate.value = "";
     document.form_search.req_no.value = "";
     document.form_search.dept_name.value = "";
     document.form_search.emp_name.value = "";

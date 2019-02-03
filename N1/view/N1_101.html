@@ -108,6 +108,8 @@
                             <div class="col-12 col-lg-2 col-md-2 col-sm-12">
                               <span class="table-filter-title">ชื่อกิจกรรม</span>
                               <div class="filter-container">
+                                  <!-- <input name="req_no" id="req_no" placeholder="" type="text" class="typeahead form-control" value="{req_no}" autocomplete="off">
+                                  <input name="dept_id" id="dept_id" type="hidden" value="{dept_id}"> -->
                                 <input name="req_no" placeholder="" type="text" class="form-control" value="{req_no}">
                               </div>
                             </div>
@@ -217,6 +219,7 @@
   <script src="/Projected/assets/js/scripts.js"></script>
   <script src="/Projected/assets/js/custom.js"></script>
   <script src="/Projected/assets/js/demo.js"></script>
+  <script src="/Projected/assets/lib/autocomplete/bootstrap3-typeahead.js" type="text/javascript"></script>
 
   <script>
 
@@ -242,6 +245,7 @@ $(document).ready(function () {
  $(function () {
     $('#edate').datetimepicker();
  });
+
 });
   var ctx = document.getElementById("myChart").getContext('2d');
   var myChart = new Chart(ctx, {
@@ -280,8 +284,6 @@ $(document).ready(function () {
   });
 
   function RecCheck() {
-    document.form_search.sdate.value = "";
-    document.form_search.edate.value = "";
     document.form_search.req_no.value = "";
     document.form_search.dept_name.value = "";
     document.form_search.emp_name.value = "";

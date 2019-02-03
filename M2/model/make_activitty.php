@@ -79,10 +79,11 @@ class make_activitty
                     ac.activities_total AS activities_total,
                     ac.activities_hour  AS activities_hour,
                     ac.activities_enddate AS activities_enddate,
-                    jo.jo_status AS status
+                    jo.jo_status AS status,
+                    ac.id as id
                     FROM tb_activities AS ac  
                     LEFT JOIN tb_joinactivity AS jo ON ac.id = jo.jo_activties
-                    WHERE 1=1 ";
+                    WHERE 1=1";
 
         if (isset($this->req_no)) {
             $query .= " AND ac.activities_name like '%" . $this->req_no . "%' ";

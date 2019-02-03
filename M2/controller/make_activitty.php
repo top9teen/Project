@@ -37,11 +37,11 @@ if (isset($_POST["search"])) {
 
     if (is_array($model->req_status_list)) {
         foreach ($model->req_status_list as $item) {
-            if ($item == 0) {
+            if ($item == '0') {
                 $template->assign_var("checked_0", "checked=''");
-            } elseif ($item == 1) {
+            } elseif ($item == 'T') {
                 $template->assign_var("checked_1", "checked=''");
-            } elseif ($item == 2) {
+            } elseif ($item == 'F') {
                 $template->assign_var("checked_2", "checked=''");
             }
         }

@@ -62,11 +62,11 @@ function reformatStatus($status)
 
 function reformatStatusResign($status)
 {
-    if ($status == 0) {
+    if ($status == '0') {
         return "รอประเมิน";
-    } else if ($status == 1) {
+    } else if ($status == 'T') {
         return "ผ่านกิจกรรม";
-    } else if ($status == 2) {
+    } else if ($status == 'F') {
         return "ไม่ผ่านกิจกรรม";
     }
 }
