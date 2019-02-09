@@ -83,6 +83,13 @@ if ($num > 0) {
         $row["no"] = $count;
         $row["activities_max"] = reformatStatusM9($row["activities_max"]);
         $row["activities_enddate"] = date("d-m-Y", strtotime($row["activities_enddate"]));
+
+        if($row["activities_status"] =="0"){
+            $row["namepoint"] = "<a href=\"/Projected/N1/controller/activitiesPage1.php?id={$row['id']}\">".$row["activities_name"]."</a>";    
+        }else{
+            $row["namepoint"] = $row["activities_name"];
+        } 
+     
         $template->assign_block_vars('request', $row);
         unset($rows);
         $count++;

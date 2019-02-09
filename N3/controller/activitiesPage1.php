@@ -43,8 +43,6 @@ $response_data["id"] = $model->id;
 
 $template->assign_vars($response_data);
 
-
-
 $stmt = $model->value();
 
 $num = $stmt->rowCount();
@@ -57,12 +55,6 @@ if ($num > 0) {
         $row["joid"] = $row["joid"];
         $row["jo_crdate"] = date("d-m-Y", strtotime($row["jo_crdate"]));
         $template->assign_block_vars('request', $row);
-
-        $response_data2["checkbox"] .= "document.getElementById(\"checkbox{$row["id"]}\").checked = true;";
-        $response_data2["checkbox"].="\n";
-
-        $response_data2["checkboxed"] .= "document.getElementById(\"checkbox{$row["id"]}\").checked = false;";
-        $response_data2["checkboxed"].="\n";
         unset($rows);
         $count++;
      

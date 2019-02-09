@@ -24,13 +24,20 @@ $model = new N3_301_Model($db);
 
 if (isset($_POST["search"])) {
 
-    $model->req_status_list = isNotEmpty($_POST["req_status"]);
-  
-    // update people
-    $model->updateadmin();
+    
+    $model->id = $_POST["id"];
 
+    $model->req_status_list = isNotEmpty($_POST["req_status"]);
+
+    $model->updateadmin2();
+
+    if($model->req_status_list == null || $model->req_status_list == ""){
+
+    } else {
+         // update people
+        $model->updateadmin();
+    }
     $model->id  = $_POST["id"];
- 
     // up date  work
     $model->updateact();
     

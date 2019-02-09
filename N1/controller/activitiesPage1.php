@@ -39,10 +39,36 @@ $response_data["activities_trem"] = $model->activities_trem;
 $response_data["activities_hour"] = $model->activities_hour;
 $response_data["activities_join"] = $model->activities_join;
 $response_data["activities_max"] = $model->activities_max;
+$response_data["activities_enddate"] =  date("d-m-Y", strtotime($model->activities_enddate));
 $response_data["id"] = $model->id;
 
 
 $template->assign_vars($response_data);
+
+
+$stmt = $model->value();
+
+$num = $stmt->rowCount();
+if ($num > 0) {
+    $response_data2 = array();
+    $count = 1;
+    
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $row["no"] = $count;
+        $row["joid"] = $row["joid"];
+        $row["jo_crdate"] = date("d-m-Y", strtotime($row["jo_crdate"]));
+        $template->assign_block_vars('request', $row);
+
+        $response_data2["checkbox"] .= "document.getElementById(\"checkbox{$row["id"]}\").checked = true;";
+        $response_data2["checkbox"].="\n";
+
+        $response_data2["checkboxed"] .= "document.getElementById(\"checkbox{$row["id"]}\").checked = false;";
+        $response_data2["checkboxed"].="\n";
+        unset($rows);
+        $count++;
+     
+    }
+}
 
 $data = array(
     "username" => $_SESSION["username"],

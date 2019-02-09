@@ -55,8 +55,8 @@ function reformatStatus($status)
         return "รอการอนุมัติ";
     } else if ($status == "T") {
         return "ผ่านกิจกรรม";
-    } else {
-        return "รอการอนุมัติ";
+    } else if ($status == "F") {
+        return "ไม่ผ่านกิจกรรม";
     }
 }
 

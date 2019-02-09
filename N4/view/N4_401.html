@@ -149,6 +149,12 @@
                                               <span class="custom-control-label">ผ่านกิจกรรม</span>
                                             </label>
                                           </div>
+                                          <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                              <input name="req_status[]" value="F" id="checkbox1" type="checkbox" {checked_2} class="custom-control-input">
+                                              <span class="custom-control-label">ไม่ผ่านกิจกรรม</span>
+                                            </label>
+                                          </div>
                                         </div>
                                   </div>
                                 </div>
@@ -292,6 +298,7 @@ $(document).ready(function () {
     document.form_search.emp_name_1.value = "";
     document.getElementById("checkbox0").checked = false;
     document.getElementById("checkbox1").checked = false;
+    document.getElementById("checkbox2").checked = false;
     // document.form_search.req_status[].checked  = false;
   }
   </script>

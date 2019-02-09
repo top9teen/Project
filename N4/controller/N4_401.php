@@ -40,6 +40,8 @@ if (isset($_POST["search"])) {
                 $template->assign_var("checked_0", "checked=''");
             } elseif ($item == "T") {
                 $template->assign_var("checked_1", "checked=''");
+            } elseif ($item == "F") {
+                $template->assign_var("checked_2", "checked=''");
             }
         }
     }

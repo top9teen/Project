@@ -118,6 +118,7 @@
                               <label>เริ่มเวลาเช้า<span>*</span></label>
                               <select class="form-control" id="activities_timeday" name="activities_timeday">
                                 <option value="">กรุณาเลือก...</option>
+                                <option value="-">-</option>
                                 <option value="07.00">07.00น</option>
                                 <option value="08.00"> 08.00น</option>
                                 <option value="09.00"> 09.00น</option>
@@ -131,6 +132,7 @@
                             <label>เริ่มเวลาเช้า<span>*</span></label>
                             <select class="form-control" id="activities_timeday2" name="activities_timeday2">
                               <option value="">กรุณาเลือก...</option>
+                              <option value="-">-</option>
                               <option value="07.00">07.00น</option>
                               <option value="08.00"> 08.00น</option>
                               <option value="09.00"> 09.00น</option>
@@ -144,6 +146,7 @@
                             <label>เริ่มเวลาบ่าย<span>*</span></label>
                             <select class="form-control" id="activities_timenint" name="activities_timenint">
                                 <option value="">กรุณาเลือก...</option>
+                                <option value="-">-</option>
                                 <option value="13.00">13.00น</option>
                                 <option value="14.00"> 14.00น</option>
                                 <option value="15.00"> 15.00น</option>
@@ -156,6 +159,7 @@
                             <label>เริ่มเวลาบ่าย<span>*</span></label>
                             <select class="form-control" id="activities_timenint2" name="activities_timenint2">
                                 <option value="">กรุณาเลือก...</option>
+                                <option value="-">-</option>
                                 <option value="13.00">13.00น</option>
                                 <option value="14.00"> 14.00น</option>
                                 <option value="15.00"> 15.00น</option>
@@ -170,7 +174,7 @@
                             
                           <div class="form-group col-6">
                             <label for="last_name">วันที่่เริ่มทำกิจกรรม<span>*</span></label>
-                            <input id="activities_enddate" autocomplete="off"  name="activities_enddate" data-min-view="2" data-date-format="dd/mm/yyyy" placeholder="วันที่สิ้นสุด" type="text" class="form-control datetimepicker">
+                            <input id="activities_enddate" autocomplete="off" readonly  name="activities_enddate" data-min-view="2" data-date-format="dd/mm/yyyy" placeholder="วันที่สิ้นสุด" type="text" class="form-control datetimepicker">
                           </div>
 
 
@@ -205,7 +209,6 @@
                                 <input id="activities_total" type="number" class="form-control" name="activities_total" autofocus>
                               </div>
                         </div>
-      
                         <div class="form-group">
                           <div class="card-header">โปรดตรวจสอบข้อมูลก่อนยืนยัน<span>*</span></div>
                           <button type="submit"id="search" name="search" class="btn btn-primary btn-block">

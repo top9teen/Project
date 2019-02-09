@@ -5,7 +5,7 @@ require '../../session.php';
 require_once '../../common.php';
 require_once '../../lib/template.php';
 require_once '../../config/database.php';
-require_once '../model/make_activitty.php';
+require_once '../model/activties_ModelMe.php';
 include '../../utils/base_function.php';
 
 //prepare template

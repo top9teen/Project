@@ -143,5 +143,72 @@ class N1_101_Model
             die($ex->getMessage());
         }
     }
+
+    public function value()
+    {
+        $query = "SELECT 
+                    jo.*, CONCAT(us.pre_name,' ',us.user_name,' ',us.user_lastname) AS name,
+                    br.br_name AS br_name
+                    FROM tb_joinactivity AS jo 
+                    LEFT JOIN tb_user AS us ON us.id = jo.jo_userid
+                    LEFT JOIN tb_branch AS br ON br.user_majer = us.user_majer
+                    WHERE jo.jo_activties =:id
+                    ORDER BY  jo.jo_crdate ASC";
+
+        $stmt = $this->conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+            $stmt->execute();
+            return $stmt;
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+
+    function update_activities()
+    {
+
+        // query to update record
+          $query = "UPDATE tb_activities SET activities_trem = ?,activities_name = ?,activities_location = ?, activities_timeday = ?, activities_timenint = ?, 
+                    activities_hour = ?, activities_detill = ?, activities_aspect = ?, activities_year = ?,activities_enddate = ?
+                    WHERE id = ? ";
+          // prepare query
+         $stmt = $this->conn->prepare($query);
+  
+          // sanitize
+          $this->id=htmlspecialchars(strip_tags($this->id));
+          $this->activities_name=htmlspecialchars(strip_tags($this->activities_name));
+          $this->activities_location=htmlspecialchars(strip_tags($this->activities_location));
+          $this->activities_timeday=htmlspecialchars(strip_tags($this->activities_timeday));
+          $this->activities_timenint=htmlspecialchars(strip_tags($this->activities_timenint));
+          $this->activities_hour=htmlspecialchars(strip_tags($this->activities_hour));
+          $this->activities_detill=htmlspecialchars(strip_tags($this->activities_detill));
+          $this->activities_aspect=htmlspecialchars(strip_tags($this->activities_aspect));
+          $this->activities_year=htmlspecialchars(strip_tags($this->activities_year));
+          $this->activities_trem=htmlspecialchars(strip_tags($this->activities_trem));
+          $this->activities_enddate=htmlspecialchars(strip_tags($this->activities_enddate));
+        
+          // bind values
+          $stmt->bindParam(1, $this->activities_trem);
+          $stmt->bindParam(2, $this->activities_name);
+          $stmt->bindParam(3, $this->activities_location);
+          $stmt->bindParam(4, $this->activities_timeday);
+          $stmt->bindParam(5, $this->activities_timenint);
+          $stmt->bindParam(6, $this->activities_hour);
+          $stmt->bindParam(7, $this->activities_detill);
+          $stmt->bindParam(8, $this->activities_aspect);
+          $stmt->bindParam(9, $this->activities_year);
+          $stmt->bindParam(10, $this->activities_enddate);
+          $stmt->bindParam(11, $this->id);
+  
+          // execute query
+          if($stmt->execute()){
+              return true;
+          }
+  
+          return false;
+    }
+   
 // end class
 }

@@ -152,7 +152,7 @@ class N3_301_Model
                     FROM tb_joinactivity AS jo 
                     LEFT JOIN tb_user AS us ON us.id = jo.jo_userid
                     LEFT JOIN tb_branch AS br ON br.user_majer = us.user_majer
-                    WHERE  jo.jo_statusadmin = '0' AND jo.jo_activties =:id
+                    WHERE  jo.jo_statusadmin != 'T' AND jo.jo_activties =:id
                     ORDER BY  jo.jo_crdate ASC";
 // 0 เปิด , 1 ปิด
 
@@ -205,5 +205,24 @@ class N3_301_Model
             die($ex->getMessage());
         }
     }
+       
+    public function updateadmin2()
+    {
+        
+        $query = "UPDATE tb_joinactivity SET jo_statusadmin = 'F' WHERE jo_activties = :id ";             
+      
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $this->id);
+
+        try {
+             $stmt->execute();
+
+            return $stmt;
+
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+
 // end class  tb_activities
 }

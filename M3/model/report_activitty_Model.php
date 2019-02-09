@@ -22,7 +22,7 @@ class report_activitty_Model
         LEFT JOIN tb_joinactivity jo ON jo.jo_activties = ac.id
         LEFT JOIN tb_user  us ON us.id = jo. jo_userid
         LEFT JOIN tb_branch  br ON br.user_majer = us.user_majer
-        WHERE  jo.jo_statusadmin = '1'";
+        WHERE  jo.jo_statusadmin = 'T'";
 
             if (isset($this->id)) {
                 $query = $query . " AND us.id = ".$this->id;

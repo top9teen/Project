@@ -142,6 +142,24 @@
                                               <span class="custom-control-label">ชั้นปี่ที่ 2</span>
                                             </label>
                                           </div>
+                                          <div class="custom-controls-stacked">
+                                              <label class="custom-control custom-checkbox">
+                                                <input name="req_status[]" value="3" id="checkbox2" type="checkbox" {checked_2} class="custom-control-input">
+                                                <span class="custom-control-label">ชั้นปี่ที่ 3</span>
+                                              </label>
+                                            </div>
+                                            <div class="custom-controls-stacked">
+                                                <label class="custom-control custom-checkbox">
+                                                  <input name="req_status[]" value="4" id="checkbox3" type="checkbox" {checked_3} class="custom-control-input">
+                                                  <span class="custom-control-label">ชั้นปี่ที่ 4</span>
+                                                </label>
+                                              </div>
+                                              <div class="custom-controls-stacked">
+                                                  <label class="custom-control custom-checkbox">
+                                                    <input name="req_status[]" value="5" id="checkbox4" type="checkbox" {checked_4} class="custom-control-input">
+                                                    <span class="custom-control-label">ชั้นปี่ที่ 5</span>
+                                                  </label>
+                                                </div>
                                         </div>
                                   </div> 
                                 </div>
@@ -282,6 +300,9 @@ $(document).ready(function () {
     document.form_search.emp_name.value = "";
     document.getElementById("checkbox0").checked = false;
     document.getElementById("checkbox1").checked = false;
+    document.getElementById("checkbox2").checked = false;
+    document.getElementById("checkbox3").checked = false;
+    document.getElementById("checkbox4").checked = false;
     // document.form_search.req_status[].checked  = false;
   }
   </script>

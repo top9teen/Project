@@ -41,6 +41,12 @@ if (isset($_POST["search"])) {
                 $template->assign_var("checked_0", "checked=''");
             } elseif ($item == 2) {
                 $template->assign_var("checked_1", "checked=''");
+            }elseif ($item == 3) {
+                $template->assign_var("checked_2", "checked=''");
+            }elseif ($item == 4) {
+                $template->assign_var("checked_3", "checked=''");
+            }elseif ($item == 5) {
+                $template->assign_var("checked_4", "checked=''");
             }
     }
     }
