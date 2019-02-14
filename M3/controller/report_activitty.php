@@ -74,7 +74,8 @@ if (isset($_POST["search"])) {
             $user_year  = $row["activities_year"];
             $trem       = $row["activities_trem"];
             $user_moo   = $row["user_moo"];
-            // date("Y-m-d H:i", strtotime($model->req_datetime))
+            $row["activities_enddate"] = date("d/m/Y", strtotime($row["activities_enddate"]));
+            
 
             $template->assign_block_vars('request', $row);
             unset($rows);
@@ -88,7 +89,7 @@ if (isset($_POST["search"])) {
     }else{
         $response_data["Sum"]           = '<span style="color:red">'.$sum.'</span>';
     }
-    
+
     $response_data["Total"]         = $Total; 
     $response_data["Hour"]          = $Hour; 
     $response_data["Pername"]       = $Pername;
