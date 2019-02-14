@@ -20,7 +20,7 @@
 					ac.activities_name AS activities_name,
 					ac.activities_location AS activities_location,
 					ac.activities_timeday AS activities_timeday,
-					ac.activities_detill AS activities_detill,
+					ac.activities_aspect AS activities_detill,
 					ac.activities_enddate AS activities_enddate,
 					ac.activities_year AS activities_year,
 					ac.activities_trem AS activities_trem,

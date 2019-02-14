@@ -83,9 +83,14 @@ if (isset($_POST["search"])) {
 
 
     $sum = $Hour - $Total;
+    if($sum < 0){
+        $response_data["Sum"]           = '<span style="color:green">0</span>';
+    }else{
+        $response_data["Sum"]           = '<span style="color:red">'.$sum.'</span>';
+    }
+    
     $response_data["Total"]         = $Total; 
-    $response_data["Hour"]          = $Hour;
-    $response_data["Sum"]           = $Hour -$Total;
+    $response_data["Hour"]          = $Hour; 
     $response_data["Pername"]       = $Pername;
     $response_data["Fname"]         = $Fname;
     $response_data["lname"]         = $lname;
@@ -97,7 +102,7 @@ if (isset($_POST["search"])) {
     $response_data["display"] = "";
 
     $template->assign_vars($response_data);
-        if($sum = 0){
+        if($sum <= 0){
 
     $template->assign_var("rpt_url", $rpt_url);
         } else{
